@@ -1,0 +1,41 @@
+#!/bin/sh
+
+keyfile=files/authorized_keys
+myshell=/bin/tcsh
+mygroup=fywss
+
+user=$1
+
+homedir=/home/$user
+sshdir=$homedir/.ssh
+
+usage() {
+	echo usage: ./bin/setupaccount USER && exit 1
+}
+
+if test `whoami` != root; then
+	echo must be run as root
+	usage
+fi
+
+if test -d $homedir; then
+	echo user $user already exists
+else
+	echo creating user: $user
+	groupadd $mygroup
+	adduser --gecos $user --ingroup $mygroup --shell $myshell $user
+	chfn $user
+
+	if test $user = steve; then
+		usermod -G adm,root,www-data,operator,staff $user
+		echo "$user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/011_$user-nopasswd
+	fi
+fi
+
+if test ! -d $sshdir; then
+	echo setting up ssh for $user
+	mkdir -p $sshdir
+	cp $keyfile $sshdir
+	chown -R $user:$mygroup $sshdir
+	chmod 600 $sshdir/*
+fi

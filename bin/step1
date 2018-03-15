@@ -1,0 +1,64 @@
+#!/bin/sh
+
+utilities="ansible lshw tcsh"
+startdir=`pwd`
+appdir=`basename $startdir`
+bakdir=/bak/fresh
+
+usage() {
+	echo usage: sudo ./bin/step1 HOSTNAME && exit 1
+}
+
+if test `whoami` != root; then
+	echo must be run as root
+	usage
+fi
+
+if test $# -lt 1; then
+	usage
+fi
+
+myhost=$1
+echo $myhost > /etc/hostname
+hostname $myhost
+
+if test `systemctl is-enabled ssh`; then
+	echo sshd is already enabled
+else
+	echo enabling sshd:
+	sudo systemctl enable ssh
+	sudo systemctl start ssh
+fi
+
+if test ! -d $bakdir; then
+	echo creating $bakdir
+	mkdir -p $bakdir
+	cp -a /etc $bakdir
+	touch /etc/FRESH_INSTALL
+else
+	echo bypassing creation of $bakdir
+fi
+
+hwinfo=hwinfo-`hostname`.txt
+if test ! -f $hwinfo; then
+	echo generating $hwinfo
+	./bin/hwinfo > $hwinfo
+fi
+
+./bin/setupaccount pi
+./bin/setupaccount steve
+
+echo securing sshd:
+cp files/sshd_config /etc/ssh
+diff -r $bakdir/etc/ssh/sshd_config /etc/ssh
+diff -r $bakdir/etc/passwd /etc/
+systemctl restart ssh
+
+cp files/hosts /etc
+cp files/dhcpcd.conf /etc
+cp files/resolv.conf /etc
+
+echo installing important utilities:
+set -x
+apt-get update
+apt-get install -y $utilities

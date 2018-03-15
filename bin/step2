@@ -1,0 +1,37 @@
+#!/bin/sh
+
+tools="prometheus prometheus-node-exporter grafana icinga icinga-doc"
+startdir=`pwd`
+appdir=`basename $startdir`
+bakdir=/bak/step1
+
+usage() {
+	echo usage: sudo ./bin/step && exit 1
+}
+
+if test `whoami` != root; then
+	echo must be run as root
+	usage
+fi
+
+if test $# -gt 0; then
+	usage
+fi
+
+echo installing devops tools:
+apt-get install -y $tools
+
+if test ! -d $bakdir; then
+	echo creating $bakdir
+	mkdir -p $bakdir
+	cp -a /etc $bakdir
+	touch /etc/LOCAL_changes_start
+else
+	echo bypassing creation of $bakdir
+fi
+
+hwinfo=hwinfo-step2-`hostname`.txt
+if test ! -f $hwinfo; then
+	echo generating $hwinfo
+	./bin/hwinfo > $hwinfo
+fi
