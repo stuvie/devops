@@ -49,6 +49,7 @@ fi
 
 echo securing sshd:
 cp files/sshd_config /etc/ssh
+diff -r $bakdir/etc/ssh/sshd_config /etc/ssh
 systemctl restart ssh
 
 cp files/hosts /etc
@@ -56,11 +57,6 @@ cp files/dhcpcd.conf /etc
 cp files/resolv.conf /etc
 echo $myhost > /etc/hostname
 hostname $myhost
-
-diff -r $bakdir/etc/ssh/sshd_config /etc/ssh
-diff -r $bakdir/etc/passwd /etc/
-diff -r $bakdir/etc/dhcpcd.conf /etc/
-diff -r $bakdir/etc/resolv.conf /etc/
 
 echo installing important utilities:
 set -x

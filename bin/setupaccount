@@ -36,6 +36,6 @@ if test ! -d $sshdir; then
 	echo setting up ssh for $user
 	mkdir -p $sshdir
 	cp $keyfile $sshdir
-	chown -R $user:$mygroup $sshdir
+	chown -R $user $sshdir
 	chmod 600 $sshdir/*
 fi
