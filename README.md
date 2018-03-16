@@ -30,9 +30,28 @@ When complete, reboot. Make sure system comes up with the correct hostname and I
 
 ### Step 2: Install devops tools
 ```
+cd devops
 sudo ./bin/step2
 ```
 When complete, you can configure nginx, prometheus, etc.
+
+## Modify ansible.cfg and inventory
+
+Modify the `inventory` file to suit your environment. Change the names to your liking and the IPs to the addresses of your Raspberry Pis.
+
+If your SSH user on the Raspberry Pis are not the Raspbian default `pi` user modify `remote_user` in the `ansible.cfg`.
+
+## Confirm Ansible is working with your Raspberry Pis:
+
+```
+ansible -m ping all
+```
+
+## Deploy, Deploy, Deploy
+
+```
+ansible-playbook admin.yml
+```
 
 ### todo
 

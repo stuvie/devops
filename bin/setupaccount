@@ -20,7 +20,8 @@ if test `whoami` != root; then
 fi
 
 if test -d $homedir; then
-	echo user $user already exists
+	echo user $user already exists but please change the password now
+	passwd
 else
 	echo creating user: $user
 	groupadd $mygroup
