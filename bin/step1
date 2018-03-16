@@ -1,14 +1,14 @@
 #!/bin/sh
 
-myaccount="steve"
-utilities="ansible lshw tcsh"
+staffaccount="steve"
+utilities="ansible lshw tcsh lsof tcpdump time locales-all nginx"
 
 startdir=`pwd`
 appdir=`basename $startdir`
 bakdir=/bak/fresh
 
 usage() {
-	echo usage: sudo ./bin/step1 HOSTNAME && exit 1
+	echo usage: sudo ./bin/step1 HOSTNAME IP_ADDRESS && exit 1
 }
 
 if test `whoami` != root; then
@@ -16,29 +16,25 @@ if test `whoami` != root; then
 	usage
 fi
 
-if test $# -lt 1; then
+if test $# -lt 2; then
 	usage
 fi
 
 myhost=$1
+myipaddress=$2
 
-if test ! -d $bakdir; then
-	echo creating $bakdir
-	mkdir -p $bakdir
-	cp -a /etc $bakdir
-	touch /etc/FRESH_INSTALL
-else
-	echo bypassing creation of $bakdir
+if test -d $bakdir; then
+	echo error: $bakdir already exists && exit 2
 fi
 
-hwinfo=hwinfo-$myhost.txt
-if test ! -f $hwinfo; then
-	echo generating $hwinfo
-	./bin/hwinfo > $hwinfo
-fi
+echo creating $bakdir
+mkdir -p $bakdir
+cp -a /etc $bakdir
+touch /etc/FRESH_INSTALL
 
+./bin/hwinfo > hwinfo-$myhost.txt
 ./bin/setupaccount pi
-./bin/setupaccount $myaccount
+./bin/setupaccount $staffaccount
 
 if test `systemctl is-enabled ssh`; then
 	echo sshd is already enabled
@@ -56,8 +52,10 @@ systemctl restart ssh
 
 cp files/hosts /etc
 cp files/services /etc
-cp files/dhcpcd.conf /etc
+cat files/dhcpcd.conf | sed s/10.0.1.5/$myipaddress/ > /etc/dhcpcd.conf
 cp files/resolv.conf /etc
+cp files/default /etc/nginx/sites-available/default
+cp files/rc.local /etc
 echo $myhost > /etc/hostname
 hostname $myhost
 

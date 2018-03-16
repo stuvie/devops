@@ -1,8 +1,8 @@
 #!/bin/sh
 
-tools="prometheus prometheus-node-exporter time locales-all lsof nginx"
+tools="prometheus prometheus-node-exporter grafana certbot apache2"
 # un-comment the next line to get a few more tools (with lots of dependencies)
-#tools="$tools grafana icinga icinga-doc"
+#tools="$tools icinga icinga-doc"
 
 startdir=`pwd`
 appdir=`basename $startdir`
@@ -21,20 +21,19 @@ if test $# -gt 0; then
 	usage
 fi
 
+if test -d $bakdir; then
+	echo error: $bakdir already exists && exit 2
+fi
+
 echo installing devops tools:
 apt-get install -y $tools
+cp files/prometheus.yml /etc/prometheus/prometheus.yml
+systemctl enable prometheus
+systemctl start prometheus
 
-if test ! -d $bakdir; then
-	echo creating $bakdir
-	mkdir -p $bakdir
-	cp -a /etc $bakdir
-	touch /etc/LOCAL_changes_start
-else
-	echo bypassing creation of $bakdir
-fi
+echo creating $bakdir
+mkdir -p $bakdir
+cp -a /etc $bakdir
+touch /etc/LOCAL_changes_start
 
-hwinfo=hwinfo-step2-`hostname`.txt
-if test ! -f $hwinfo; then
-	echo generating $hwinfo
-	./bin/hwinfo > $hwinfo
-fi
+./bin/hwinfo > hwinfo-step2-`hostname`.txt

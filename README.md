@@ -22,7 +22,7 @@ Generally, everything you'd want to customize is at the top of each script
 
 ### Step 1: Configure server and install a few utilities
 ```
-sudo ./bin/step1 HOSTNAME
+sudo ./bin/step1 HOSTNAME IP_ADDRESS
 ```
 This script will create a user account, improve the security of your ssh service, setup a static IP address and install basic utilities.
 

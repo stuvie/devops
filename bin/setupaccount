@@ -1,8 +1,9 @@
 #!/bin/sh
 
-keyfile=files/authorized_keys
 myshell=/bin/tcsh
 mygroup=fywss
+staffaccount="steve"
+keyfile=files/authorized_keys
 
 user=$1
 
@@ -24,10 +25,11 @@ else
 	echo creating user: $user
 	groupadd $mygroup
 	adduser --gecos $user --ingroup $mygroup --shell $myshell $user
-	chfn $user
 
-	if test $user = steve; then
+	if test $user = $staffaccount; then
+		# we don't want to do this for regular accounts, such as 'pi'
 		usermod -G adm,root,www-data,operator,staff $user
+		chfn -f 'Steve Kotsopoulos' $user
 		echo "$user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/011_$user-nopasswd
 	fi
 fi
