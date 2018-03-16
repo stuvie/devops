@@ -1,6 +1,8 @@
 #!/bin/sh
 
+myaccount="steve"
 utilities="ansible lshw tcsh"
+
 startdir=`pwd`
 appdir=`basename $startdir`
 bakdir=/bak/fresh
@@ -36,7 +38,7 @@ if test ! -f $hwinfo; then
 fi
 
 ./bin/setupaccount pi
-./bin/setupaccount steve
+./bin/setupaccount $myaccount
 
 if test `systemctl is-enabled ssh`; then
 	echo sshd is already enabled
@@ -53,6 +55,7 @@ diff -r $bakdir/etc/ssh/sshd_config /etc/ssh
 systemctl restart ssh
 
 cp files/hosts /etc
+cp files/services /etc
 cp files/dhcpcd.conf /etc
 cp files/resolv.conf /etc
 echo $myhost > /etc/hostname

@@ -1,27 +1,38 @@
-# devops
+# Devops
 
-automated configuration of servers running Raspbian OS
+Automated configuration of servers running Raspbian OS
 
-## usage
+# Prerequisites
 
-### step 2: customization
+* Raspberry Pi 2 or 3 with [Raspbian OS](https://www.raspberrypi.org/downloads/raspbian/) installed
 
-1. read and customize the scripts in ``bin`` folder
-1. read and customize the config files in the ``files`` folder
+## Configure your server
 
-### step 1: create users, secure sshd, setup static IP address, install a few utilities
+### preparation
 ```
 git clone https://github.com/stuvie/devops.git
 cd devops
+```
+
+1. read and customize the scripts in ``bin`` folder
+1. read and customize the config files in the ``files`` folder,
+certainly ``hosts``, ``resolv.conf`` and ``dhcpcd.conf``
+
+Generally, everything you'd want to customize is at the top of each script
+
+### Step 1: Configure server and install a few utilities
+```
 sudo ./bin/step1 HOSTNAME
 ```
-when complete, you can reboot
+This script will create a user account, improve the security of your ssh service, setup a static IP address and install basic utilities.
 
-### step 2: install devops tools
+When complete, reboot. Make sure system comes up with the correct hostname and IP address.
+
+### Step 2: Install devops tools
 ```
 sudo ./bin/step2
 ```
-when complete, you can configure nginx, icinga2, etc.
+When complete, you can configure nginx, prometheus, etc.
 
 ### todo
 

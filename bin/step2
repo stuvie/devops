@@ -1,6 +1,9 @@
 #!/bin/sh
 
-tools="prometheus prometheus-node-exporter grafana icinga icinga-doc"
+tools="prometheus prometheus-node-exporter time locales-all lsof nginx"
+# un-comment the next line to get a few more tools (with lots of dependencies)
+#tools="$tools grafana icinga icinga-doc"
+
 startdir=`pwd`
 appdir=`basename $startdir`
 bakdir=/bak/step1
