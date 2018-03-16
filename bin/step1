@@ -54,7 +54,6 @@ cp files/hosts /etc
 cp files/services /etc
 cat files/dhcpcd.conf | sed s/10.0.1.5/$myipaddress/ > /etc/dhcpcd.conf
 cp files/resolv.conf /etc
-cp files/default /etc/nginx/sites-available/default
 cp files/rc.local /etc
 echo $myhost > /etc/hostname
 hostname $myhost
@@ -63,3 +62,4 @@ echo installing important utilities:
 set -x
 apt-get update
 apt-get install -y $utilities
+cp files/default /etc/nginx/sites-available/default
