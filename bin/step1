@@ -58,9 +58,9 @@ cp files/rc.local /etc
 echo $myhost > /etc/hostname
 hostname $myhost
 
-echo installing important utilities:
+echo installing updates and utilities:
 set -x
 apt-get update
-apt-get upgrade
+apt-get upgrade -y
 apt-get install -y $utilities
 cp files/default /etc/nginx/sites-available/default
