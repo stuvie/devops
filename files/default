@@ -19,8 +19,7 @@
 # Default server configuration
 #
 server {
-	listen 8080 default_server;
-	listen [::]:8080 default_server;
+	listen 6060 default_server;
 
 	# SSL configuration
 	#

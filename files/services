@@ -382,6 +382,8 @@ x11-6		6006/tcp
 x11-6		6006/udp
 x11-7		6007/tcp
 x11-7		6007/udp
+x11-10		6010/tcp
+x11-11		6011/tcp
 gnutella-svc	6346/tcp			# gnutella
 gnutella-svc	6346/udp
 gnutella-rtr	6347/tcp			# gnutella
@@ -392,6 +394,7 @@ sge-execd	6445/tcp	sge_execd	# Grid Engine Execution Service
 sge-execd	6445/udp	sge_execd
 mysql-proxy	6446/tcp			# MySQL Proxy
 mysql-proxy	6446/udp
+nginx		6060/tcp
 babel		6696/udp			# Babel Routing Protocol
 ircs-u		6697/tcp		# Internet Relay Chat via TLS/SSL
 afs3-fileserver 7000/tcp	bbs		# file server itself
@@ -419,6 +422,7 @@ font-service	7100/udp	xfs
 http-alt	8080/tcp	webcache	# WWW caching service
 http-alt	8080/udp
 puppet		8140/tcp			# The Puppet master service
+nginx-ssl	8443/tcp
 bacula-dir	9101/tcp			# Bacula Director
 bacula-dir	9101/udp
 bacula-fd	9102/tcp			# Bacula File Daemon
