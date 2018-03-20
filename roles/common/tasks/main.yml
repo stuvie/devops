@@ -1,0 +1,20 @@
+---
+# tasks file for common
+- name: apt-get update
+  apt:
+    update_cache=yes
+    autoclean=no
+    autoremove=no
+    cache_valid_time=86400
+
+# - name: apt-get upgrade
+#   apt:
+#     upgrade=full
+
+- name: Install common tools
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - finger
+    - nuttcp

@@ -1,0 +1,15 @@
+devops		ansible_host=devops.fywss.com
+ops		ansible_host=ops.fywss.com
+two		ansible_host=two.fywss.com
+thrash		ansible_host=thrash.fywss.com
+
+[external]
+devops
+thrash
+
+[internal]
+ops
+two
+
+[master]
+ops

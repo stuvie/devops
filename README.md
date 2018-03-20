@@ -35,28 +35,32 @@ sudo ./bin/step2
 ```
 When complete, you can configure nginx, prometheus, etc.
 
-## Modify ansible.cfg and inventory
+## Moving to Ansible
 
-Modify the `inventory` file to suit your environment. Change the names to your liking and the IPs to the addresses of your Raspberry Pis.
+### Modify ansible.cfg and inventory
+
+Modify the `inventory` file to suit your environment. Change the hostnames to your liking.
 
 If your SSH user on the Raspberry Pis are not the Raspbian default `pi` user modify `remote_user` in the `ansible.cfg`.
 
-## Confirm Ansible is working with your Raspberry Pis:
+### Confirm ansible is working with your servers
 
 ```
 ansible -m ping all
+ansible -m ping master
 ```
 
-## Deploy, Deploy, Deploy
+### Deploy Tools and Toys
 
 ```
-ansible-playbook admin.yml
+ansible-playbook common.yml
+ansible-playbook toys.yml
+ansible-playbook debug.yml
 ```
 
-### todo
+## Todo
 
-* move scripts to ansible
-* improve error handling in scripts (check args)
+* expand ansible playbooks
+* nginx ssl config should use template
 * add support for other operating systems
-* nginx config
-* monitoring tools config
+* monitoring tools configuration

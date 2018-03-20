@@ -1,0 +1,7 @@
+- hosts: master
+  roles:
+    - common
+
+- hosts: two
+  roles:
+    - common

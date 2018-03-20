@@ -1,0 +1,8 @@
+- hosts: external
+  become: no
+  serial: 1
+  tasks:
+  # - debug: var=vars
+  # - debug: var=hostvars[inventory_hostname]
+  - name: FYI on host {{ inventory_hostname }}
+    command: date
