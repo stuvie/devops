@@ -1,0 +1,21 @@
+#!/bin/sh
+
+checkfile() {
+	src=files/$1
+	installed=$2/$1
+	echo diff $src $installed
+	diff $src $installed
+}
+
+checkfile authorized_keys		/home/pi
+checkfile authorized_keys		/home/steve
+checkfile dhcpcd.conf			/etc
+checkfile hosts				/etc
+checkfile rc.local			/etc
+checkfile resolv.conf			/etc
+checkfile services			/etc
+checkfile prometheus.yml		/etc/prometheus
+checkfile sshd_config			/etc/ssh
+checkfile nginx/fywss-proxies		/etc
+checkfile nginx/ssl			/etc
+checkfile nginx/sites-enabled/default	/etc
