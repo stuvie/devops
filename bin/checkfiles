@@ -7,8 +7,8 @@ checkfile() {
 	diff $src $installed
 }
 
-checkfile authorized_keys		/home/pi
-checkfile authorized_keys		/home/steve
+checkfile authorized_keys		/home/pi/.ssh
+checkfile authorized_keys		/home/steve/.ssh
 checkfile dhcpcd.conf			/etc
 checkfile hosts				/etc
 checkfile rc.local			/etc
@@ -17,5 +17,5 @@ checkfile services			/etc
 checkfile prometheus.yml		/etc/prometheus
 checkfile sshd_config			/etc/ssh
 checkfile nginx/fywss-proxies		/etc
-checkfile nginx/ssl			/etc
+checkfile nginx/sites-enabled/ssl	/etc
 checkfile nginx/sites-enabled/default	/etc
