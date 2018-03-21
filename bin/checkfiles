@@ -17,5 +17,5 @@ checkfile services			/etc
 checkfile prometheus.yml		/etc/prometheus
 checkfile sshd_config			/etc/ssh
 checkfile nginx/fywss-proxies		/etc
-checkfile nginx/sites-enabled/ssl	/etc
+checkfile nginx/sites-enabled/https	/etc
 checkfile nginx/sites-enabled/default	/etc
