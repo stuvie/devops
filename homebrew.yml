@@ -1,0 +1,7 @@
+- hosts: localhost
+  become: no
+  vars:
+    homebrew_installed_packages:
+      - hub
+  roles:
+    - geerlingguy.homebrew
