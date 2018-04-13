@@ -35,9 +35,9 @@ touch /etc/FRESH_INSTALL
 if test `uname` = Darwin; then
 	./bin/setupaccount $staffaccount
 	echo securing sshd:
-	cp files/darwin/sshd_config /etc/ssh
-	cp files/darwin/rc.local /etc
-	cp files/darwin/local.startup.plist /Library/LaunchDaemons
+	cp darwin/files/sshd_config /etc/ssh
+	cp darwin/files/rc.local /etc
+	cp darwin/files/local.startup.plist /Library/LaunchDaemons
 	ln -s /usr/local/servers /
 	ln -s /Volumes /n
 	touch /etc/LOCAL_changes_start
