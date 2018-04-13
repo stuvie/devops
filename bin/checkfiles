@@ -7,6 +7,11 @@ checkfile() {
 	diff $src $installed
 }
 
+if test `uname` = Darwin; then
+	checkfile authorized_keys		/Users/steve/.ssh
+	exit 0
+fi
+
 checkfile authorized_keys		/home/pi/.ssh
 checkfile authorized_keys		/home/steve/.ssh
 checkfile dhcpcd.conf			/etc
