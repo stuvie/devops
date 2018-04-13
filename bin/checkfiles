@@ -9,6 +9,10 @@ checkfile() {
 
 if test `uname` = Darwin; then
 	checkfile authorized_keys		/Users/steve/.ssh
+	cd darwin
+	checkfile rc.local			/etc
+	checkfile sshd_config		/etc/ssh
+	checkfile local.startup.plist		/Library/LaunchDaemons
 	exit 0
 fi
 
