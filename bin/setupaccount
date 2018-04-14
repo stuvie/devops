@@ -17,7 +17,7 @@ usage() {
 	echo usage: ./bin/setupaccount USER && exit 1
 }
 
-sshSetup {
+sshSetup() {
 	if test ! -d $sshdir; then
 		echo setting up ssh for $user
 		mkdir -p $sshdir

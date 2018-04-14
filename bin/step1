@@ -29,22 +29,40 @@ fi
 
 echo creating $bakdir
 mkdir -p $bakdir
-cp -a /etc $bakdir
-touch /etc/FRESH_INSTALL
 
 if test `uname` = Darwin; then
+	if test ! -e /usr/bin/git; then
+		echo Please install XCode developer tools first
+		exit 0
+	fi
+	# export PATH=$PATH:/usr/bin:/usr/sbin:/usr/local/bin:/Users/steve/bin
+	cp -a /private/etc $bakdir
+	touch /etc/FRESH_INSTALL
 	./bin/setupaccount $staffaccount
 	echo securing sshd:
 	cp darwin/files/sshd_config /etc/ssh
+	cp files/hosts /etc
 	cp darwin/files/rc.local /etc
 	cp darwin/files/local.startup.plist /Library/LaunchDaemons
 	ln -s /usr/local/servers /
 	ln -s /Volumes /n
+	scutil --set HostName $myhost
+	# scutil --set LocalHostName $myhost
+	scutil --set ComputerName $myhost
+	dscacheutil -flushcache
 	touch /etc/LOCAL_changes_start
+	./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
+	echo installing brew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	echo installing node
+	brew install node
 	exit 0
 fi
 
-./bin/hwinfo > hwinfo-$myhost.txt
+cp -a /etc $bakdir
+touch /etc/FRESH_INSTALL
+
+./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
 ./bin/setupaccount pi
 ./bin/setupaccount $staffaccount
 
