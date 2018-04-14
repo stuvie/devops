@@ -22,9 +22,17 @@ if test `uname` = Darwin; then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew tap pivotal/tap
 	brew install springboot
-	echo installing node and ansible via brew
+	echo installing node via brew
 	brew install node
+	echo installing nginx via brew
+	brew install nginx
+	brew services start nginx
+	echo installing ansible via brew
 	brew install ansible
+	echo installing browsers via cask
+	brew cask install --appdir="/Applications/dev-tools" google-chrome firefox
+	echo installing pm2 and angular-cli via npm
+	npm install -g pm2 @angular/cli
 	./bin/hwinfo > $HOME/work/hwinfo-step2-`hostname`.txt
 	exit 0
 fi
