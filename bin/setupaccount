@@ -24,6 +24,7 @@ sshSetup() {
 		cp $keyfile $sshdir
 		chown -R $user $sshdir
 		chmod 600 $sshdir/*
+		chmod 700 $sshdir
 	fi
 }
 
@@ -33,6 +34,7 @@ if test `whoami` != root; then
 fi
 
 if test `uname` = Darwin; then
+	cp -p dot/.??* $homedir
 	chsh -s $myshell $user
 	sshSetup
 	exit 0
