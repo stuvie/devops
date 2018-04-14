@@ -43,10 +43,12 @@ if test `uname` = Darwin; then
 	cp files/hosts /etc
 	cp darwin/files/rc.local /etc
 	cp darwin/files/local.startup.plist /Library/LaunchDaemons
+	mkdir /usr/local/servers
+	chown $staffaccount /usr/local/servers
 	ln -s /usr/local/servers /
 	ln -s /Volumes /n
 	scutil --set HostName $myhost
-	# scutil --set LocalHostName $myhost
+	scutil --set LocalHostName `echo $myhost | sed 's/\..*//'`
 	scutil --set ComputerName $myhost
 	dscacheutil -flushcache
 	touch /etc/LOCAL_changes_start

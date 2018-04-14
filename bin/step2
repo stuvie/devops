@@ -33,7 +33,8 @@ if test `uname` = Darwin; then
 	brew cask install --appdir="/Applications/dev-tools" google-chrome firefox
 	echo installing pm2 and angular-cli via npm
 	npm install -g pm2 @angular/cli
-	./bin/hwinfo > $HOME/work/hwinfo-step2-`hostname`.txt
+	mkdir -p $HOME/work/log
+	./bin/hwinfo > $HOME/work/log/hwinfo-step2-`hostname`.txt
 	exit 0
 fi
 
