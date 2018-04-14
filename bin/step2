@@ -9,8 +9,25 @@ appdir=`basename $startdir`
 bakdir=/bak/step1
 
 usage() {
-	echo usage: sudo ./bin/step && exit 1
+	echo usage: sudo ./bin/step2 && exit 1
 }
+
+if test `uname` = Darwin; then
+	if test `whoami` = root; then
+		echo must not be run as root
+		echo usage: ./bin/step2
+		exit 1
+	fi
+	echo installing brew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	brew tap pivotal/tap
+	brew install springboot
+	echo installing node and ansible via brew
+	brew install node
+	brew install ansible
+	./bin/hwinfo > $HOME/work/hwinfo-step2-`hostname`.txt
+	exit 0
+fi
 
 if test `whoami` != root; then
 	echo must be run as root

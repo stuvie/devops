@@ -53,14 +53,6 @@ if test `uname` = Darwin; then
 	echo getting hardware info
 	./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
 	system_profiler -detailLevel basic > $bakdir/system-$myhost.txt
-	echo installing brew
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	brew tap pivotal/tap
-	brew install springboot
-	echo installing node and ansible via brew
-	brew install node
-	brew install ansible
-	./bin/hwinfo > $bakdir/second-hwinfo-$myhost.txt
 	exit 0
 fi
 
