@@ -12,6 +12,7 @@ CPU=`arch`
 
 if test `uname` = Darwin; then
   printf "<=== SYSTEM ===>\n"
+	echo "  Distro info:   `sw_vers -productName` `sw_vers -productVersion`"
 	echo "  Kernel:        `uname -mrsv`"
 	echo "  Uptime:        $D_UP"
 	echo "  Memory:        `top -o mem -l 1 -ncols 13 | grep PhysMem`"

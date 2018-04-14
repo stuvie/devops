@@ -35,7 +35,6 @@ if test `uname` = Darwin; then
 		echo Please install XCode developer tools first
 		exit 0
 	fi
-	# export PATH=$PATH:/usr/bin:/usr/sbin:/usr/local/bin:/Users/steve/bin
 	cp -a /private/etc $bakdir
 	touch /etc/FRESH_INSTALL
 	./bin/setupaccount $staffaccount
@@ -51,11 +50,17 @@ if test `uname` = Darwin; then
 	scutil --set ComputerName $myhost
 	dscacheutil -flushcache
 	touch /etc/LOCAL_changes_start
+	echo getting hardware info
 	./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
+	system_profiler -detailLevel basic > $bakdir/system-$myhost.txt
 	echo installing brew
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	echo installing node
+	brew tap pivotal/tap
+	brew install springboot
+	echo installing node and ansible via brew
 	brew install node
+	brew install ansible
+	./bin/hwinfo > $bakdir/second-hwinfo-$myhost.txt
 	exit 0
 fi
 

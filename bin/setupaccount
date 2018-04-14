@@ -33,6 +33,7 @@ if test `whoami` != root; then
 fi
 
 if test `uname` = Darwin; then
+	chsh -s $myshell $user
 	sshSetup
 	exit 0
 fi
