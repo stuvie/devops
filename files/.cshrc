@@ -118,7 +118,7 @@ case "server*":
 	setenv NODE_ENV development
 	breaksw
 case "taco*":
-	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
+	# setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
 	breaksw
 case "*fywss*":
 case "*raspberrypi*":
