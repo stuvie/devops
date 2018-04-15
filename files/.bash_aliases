@@ -3,7 +3,18 @@
 #PS1="tmacc@authoring$ "
 #PS1="tmacc@staging$ "
 #PS1="vagrant@dev.tmacc.com$ "
-alias df='df -h -t ext4'
+
+case `uname` in
+Linux)
+	alias df='/bin/df -h -x tmpfs -x devtmpfs'
+	export JAVA_HOME=/usr/lib/jvm/default-java
+	;;
+Darwin)
+	alias df='/bin/df -Ph -T nodevfs,autofs,nullfs'
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
+	;;
+esac
+
 alias ll='ls -l'
 alias lt='ls -ltr'
 alias p='less'

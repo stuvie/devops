@@ -7,23 +7,25 @@ checkfile() {
 	diff $src $installed
 }
 
+checkfile .bashrc			$HOME
+checkfile .bash_aliases		$HOME
+checkfile .cshrc			$HOME
+checkfile authorized_keys	$HOME/.ssh
+checkfile hosts				/etc
+
 if test `uname` = Darwin; then
-	checkfile authorized_keys		/Users/steve/.ssh
-	checkfile hosts				/etc
 	cd darwin
-	checkfile rc.local			/etc
-	checkfile sshd_config		/etc/ssh
+	checkfile rc.local					/etc
+	checkfile sshd_config				/etc/ssh
 	checkfile local.startup.plist		/Library/LaunchDaemons
 	exit 0
 fi
 
 checkfile authorized_keys		/home/pi/.ssh
-checkfile authorized_keys		/home/steve/.ssh
 checkfile dhcpcd.conf			/etc
-checkfile hosts				/etc
-checkfile rc.local			/etc
+checkfile rc.local				/etc
 checkfile resolv.conf			/etc
-checkfile services			/etc
+checkfile services				/etc
 checkfile prometheus.yml		/etc/prometheus
 checkfile sshd_config			/etc/ssh
 checkfile nginx/fywss-proxies		/etc

@@ -88,8 +88,11 @@ case "Linux":
 		alias plist	rpm -q
 		breaksw
 	endsw
+	setenv JAVA_HOME /usr/lib/jvm/default-java
 	breaksw
 case "Darwin":
+	setenv HOMEBREW_CASK_OPTS "--appdir=/Applications/dev-tools"
+	alias cask	brew cask
 	alias update	brew update
 	alias upgrade	brew upgrade
 	alias install	brew install
@@ -101,7 +104,6 @@ case "Darwin":
 	alias df	df -Ph -T nodevfs,autofs,nullfs
 	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home
 	set path=(/opt/X11/bin ~/work/tools/spring/bin ~/work/tools/ant/bin /usr/local/mysql/bin ~/work/tools/maven/bin ~/work/tools/bin $path ~/Dropbox/dbin /opt/local/bin /usr/local/plan9/bin /Developer/usr/bin .)
-	set path=($JAVA_HOME/bin $path)
 	breaksw
 default:
 	breaksw
@@ -116,6 +118,7 @@ case "server*":
 	setenv NODE_ENV development
 	breaksw
 case "taco*":
+	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
 	breaksw
 case "*fywss*":
 case "*raspberrypi*":
@@ -125,6 +128,7 @@ default:
 	echo unknown host: $SHOST
 	breaksw
 endsw
+set path=($JAVA_HOME/bin $path)
 
 test -d /tmp/ssh-$user && \
     setenv SSH_AUTH_SOCK /tmp/ssh-$user/`/bin/ls -t /tmp/ssh-$user|head -1`
@@ -168,13 +172,11 @@ alias tpdump  'tcpx \!* | pdump'	# convert hex dump to ascii with pdump
 
 alias mlog    tail -f /var/log/maillog
 alias slog    tail -f /var/log/messages
+alias dlog    tail -f /var/log/debug
 
 alias ttcpsd  nuttcp -rv		# ttcp server, deprecated
 alias ttcps   nuttcp -1v		# ttcp server
 alias ttcp    nuttcp -tvv -n1000	# ttcp client
-
-alias dlog    tail -f /var/log/debug
-
 alias ho	host -t any
 
 if (`whoami` == root) then
@@ -188,4 +190,4 @@ else
 	set prompt="`whoami`@$SHOST% "
 endif
 
-setenv APP_ENV development
+test -f ~/.ssh/env && source ~/.ssh/env
