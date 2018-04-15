@@ -1,12 +1,13 @@
 # Devops
 
-Automated configuration of servers running Raspbian OS
+Automated configuration of systems running MacOS or Raspbian Linux
 
 # Prerequisites
 
+* Apple system with the latest MacOS installed
 * Raspberry Pi 2 or 3 with [Raspbian OS](https://www.raspberrypi.org/downloads/raspbian/) installed
 
-## Configure your server
+## Configure your system
 
 ### preparation
 ```
@@ -14,26 +15,34 @@ git clone https://github.com/stuvie/devops.git
 cd devops
 ```
 
-1. read and customize the scripts in ``bin`` folder
+1. read and customize the scripts in the ``bin`` folder
 1. read and customize the config files in the ``files`` folder,
 certainly ``hosts``, ``resolv.conf`` and ``dhcpcd.conf``
 
 Generally, everything you'd want to customize is at the top of each script
 
-### Step 1: Configure server and install a few utilities
+### Step 1: Configure system and install a few utilities
 ```
 sudo ./bin/step1 HOSTNAME IP_ADDRESS
 ```
-This script will create a user account, improve the security of your ssh service, setup a static IP address and install basic utilities.
+This script will make a backup copy of ``/etc`` under ``/bak/fresh``, create an admin user account (steve, by default) and improve the security of your ssh service by disabling password authentication.
 
-When complete, reboot. Make sure system comes up with the correct hostname and IP address.
+On Linux, it will also install core utilities via ``apt-get`` and setup a static IP address. When complete, reboot. Make sure system comes up with the correct hostname and IP address.
 
-### Step 2: Install devops tools
+### Step 2: Install development and ops tools
+On MacOS, step2 installs packages via ``brew``, which must not be run as root:
+
 ```
-cd devops
+./bin/step2
+```
+On Linux, step2 installs packages for configuring and monitoring a system:
+
+```
 sudo ./bin/step2
 ```
 When complete, you can configure nginx, prometheus, etc.
+
+After step2, the system should be configured via ansible.
 
 ## Moving to Ansible
 
