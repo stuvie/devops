@@ -22,7 +22,7 @@ if test `uname` = Darwin; then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew tap pivotal/tap
 	echo installing utilities via brew
-	brew install ansible nginx node springboot yarn
+	brew install ansible go lynx mysql nginx node springboot vault wget yarn
 	brew services start nginx
 	if test `hostname` = server.fywss.com; then
 		brew install grafana jenkins sonarqube
