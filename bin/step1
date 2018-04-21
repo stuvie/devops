@@ -47,6 +47,9 @@ if test `uname` = Darwin; then
 	chown $staffaccount /usr/local/servers
 	ln -s /usr/local/servers /
 	ln -s /Volumes /n
+	ln -s /usr/local/var/log/nginx /var/log
+	ln -s /usr/local/etc/nginx /etc
+	ln -s /Users/steve/bin /var/root
 	scutil --set HostName $myhost
 	scutil --set LocalHostName `echo $myhost | sed 's/\..*//'`
 	scutil --set ComputerName $myhost

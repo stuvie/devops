@@ -24,18 +24,26 @@ if test `uname` = Darwin; then
 	echo installing utilities via brew
 	brew install ansible go lynx mysql nginx node springboot vault wget yarn
 	brew services start nginx
+	brew services start mysql
+	sleep 2
+	mysql_secure_installation
 
 	echo installing browsers via cask
 	export HOMEBREW_CASK_OPTS="--appdir=/Applications/dev-tools"
 	brew cask install google-chrome firefox
 	brew tap caskroom/versions
 	echo installing devtools via cask
-	brew cask install box-sync dropbox java8 macdown sourcetree sts virtualbox visual-studio-code
+	brew cask install box-sync dropbox java8 macdown sourcetree sts visual-studio-code
 	
+	# note that jenkins has dependency on java8, so must install in correct order
+	echo installing monitoring and build tools via brew
+	brew install grafana jenkins sonarqube
+
 	if test `hostname` = server.fywss.com; then
-		# note that jenkins has dependency on java, so must install in this order
-		echo installing monitoring and build tools via brew
-		brew install grafana jenkins sonarqube
+		echo starting monitoring and build services
+		brew services start grafana
+		brew services start jenkins
+		brew services start sonarqube
 	fi
 
 	echo installing pm2, n and angular-cli via npm
