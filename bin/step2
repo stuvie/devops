@@ -21,18 +21,22 @@ if test `uname` = Darwin; then
 	echo installing brew
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew tap pivotal/tap
-	brew install springboot
-	echo installing node via brew
-	brew install node
-	echo installing nginx via brew
-	brew install nginx
+	echo installing utilities via brew
+	brew install ansible nginx node springboot yarn
 	brew services start nginx
-	echo installing ansible via brew
-	brew install ansible
+	if test `hostname` = server.fywss.com; then
+		brew install grafana jenkins sonarqube
+	fi
+
 	echo installing browsers via cask
-	brew cask install --appdir="/Applications/dev-tools" google-chrome firefox
-	echo installing pm2 and angular-cli via npm
-	npm install -g pm2 @angular/cli
+	export HOMEBREW_CASK_OPTS="--appdir=/Applications/dev-tools"
+	brew cask install google-chrome firefox
+	brew tap caskroom/versions
+	echo installing devtools via cask
+	brew cask install box-sync dropbox java8 macdown sourcetree sts virtualbox visual-studio-code
+	
+	echo installing pm2, n and angular-cli via npm
+	npm install -g pm2 n @angular/cli
 	mkdir -p $HOME/work/log
 	./bin/hwinfo > $HOME/work/log/hwinfo-step2-`hostname`.txt
 	exit 0
