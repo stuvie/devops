@@ -101,8 +101,9 @@ case "Darwin":
 	alias search	brew search
 	alias show	brew info
 	alias pfiles	brew list --verbose
+	alias ser	brew services
 	alias df	df -Ph -T nodevfs,autofs,nullfs
-	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home
+	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home
 	set path=(/opt/X11/bin ~/work/tools/spring/bin ~/work/tools/ant/bin /usr/local/mysql/bin ~/work/tools/maven/bin ~/work/tools/bin $path ~/Dropbox/dbin /opt/local/bin /usr/local/plan9/bin /Developer/usr/bin .)
 	breaksw
 default:
@@ -112,6 +113,9 @@ endsw
 switch(`hostname`)
 case "*.ecf*":
 	set path=($path /share/bin)
+	breaksw
+case "radical*":
+	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home
 	breaksw
 case "server*":
 	setenv NODE_ENV production

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+startDir=$HOME/work/devops
+cd $startDir || exit 1
+
 checkfile() {
 	src=files/$1
 	installed=$2/$1
@@ -11,6 +14,7 @@ checkfile .bashrc			$HOME
 checkfile .bash_aliases		$HOME
 checkfile .cshrc			$HOME
 checkfile authorized_keys	$HOME/.ssh
+checkfile ../bin/hwinfo			$HOME/bin
 checkfile hosts				/etc
 
 if test `uname` = Darwin; then

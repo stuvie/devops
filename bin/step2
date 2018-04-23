@@ -22,10 +22,11 @@ if test `uname` = Darwin; then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew tap pivotal/tap
 	echo installing utilities via brew
-	brew install ansible go lynx mysql nginx node springboot vault wget yarn
-	brew services start nginx
-	brew services start mysql
-	sleep 2
+	brew install mysql
+	mysql.server start
+	brew install ansible go lynx nginx node springboot vault wget yarn
+	brew tap cloudfoundry/tap
+	brew install cf-cli
 	mysql_secure_installation
 
 	echo installing browsers via cask
@@ -37,13 +38,10 @@ if test `uname` = Darwin; then
 	
 	# note that jenkins has dependency on java8, so must install in correct order
 	echo installing monitoring and build tools via brew
-	brew install grafana jenkins sonarqube
+	brew install jenkins sonarqube
 
 	if test `hostname` = server.fywss.com; then
-		echo starting monitoring and build services
-		brew services start grafana
-		brew services start jenkins
-		brew services start sonarqube
+		brew install grafana
 	fi
 
 	echo installing pm2, n and angular-cli via npm

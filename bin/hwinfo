@@ -10,6 +10,23 @@ CPWD=`pwd`
 ME=`whoami`
 CPU=`arch`
 
+runcmd()
+{
+	echo running: $*
+	$* 2>&1
+}
+
+toolVersions() {
+	runcmd java -version
+	runcmd spring --version
+	runcmd node -v
+	runcmd npm -version
+	runcmd yarn -v
+	runcmd mysql --version
+	runcmd nginx -v
+	runcmd vault -v
+}
+
 if test `uname` = Darwin; then
   printf "<=== SYSTEM ===>\n"
 	echo "  Distro info:   `sw_vers -productName` `sw_vers -productVersion`"
@@ -48,6 +65,7 @@ if test `uname` = Darwin; then
 	brew cask list
 	printf "\n<=== software installed via npm ===>\n"
 	npm list -g --depth=0
+	toolVersions
 	exit 0
 fi
 
@@ -117,6 +135,8 @@ case $DISTRO in
 Raspbian*|Debian*|Ubuntu*) dpkg-query -l ;;
 *) rpm -qa ;;
 esac
+
+toolVersions
 
 printf "<=== disk info ===>\n"
 fdisk -l
