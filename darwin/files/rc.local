@@ -18,9 +18,11 @@ now=`date +%s`
 bootFile=/servers/monitors/node_exporter/text-data/boot.prom
 
 echo $host rebooting at `date`
-echo node_boot_time $now > $bootFile
-echo node_boot_time_seconds $now >> $bootFile
-printf 'node_hostname{name=\"%s\"} 1\n' $host >> $bootFile
+printf 'node_hostname{name=\"%s\"} 1\n' $host > $bootFile
+chown steve $bootFile
+# echo node_boot_time $now >> $bootFile
+# echo node_boot_time_seconds $now >> $bootFile
+
 
 sudo -u steve /Users/steve/bin/daemons start
 
