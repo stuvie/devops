@@ -21,6 +21,9 @@ toolVersions() {
 	runcmd spring --version
 	runcmd node -v
 	runcmd npm -version
+	if test ! -e /usr/local/bin/nginx; then
+		return
+	fi
 	runcmd yarn -v
 	runcmd mysql --version
 	runcmd nginx -v
@@ -75,7 +78,7 @@ verbose=yes
 
 case $DISTRO in
 *Core*) free_args=-mt ; verbose=no ;;
-Raspbian*) free_args=-mt ;;
+Ubuntu*|Raspbian*) free_args=-mt ;;
 *) verbose=yes ;;
 esac
 
@@ -139,4 +142,4 @@ esac
 toolVersions
 
 printf "<=== disk info ===>\n"
-fdisk -l
+sudo fdisk -l
