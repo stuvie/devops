@@ -8,6 +8,20 @@ case `uname` in
 Linux)
 	alias df='/bin/df -h -x tmpfs -x devtmpfs'
 	export JAVA_HOME=/usr/lib/jvm/default-java
+
+	case `grep '^ID=' /etc/os-release` in
+	*ubuntu*|*debian*|*raspbian*)
+		alias ltcp='sudo lsof \!* | grep -i tcp | grep "           "'
+		alias ctl='sudo systemctl'
+		alias update='sudo apt-get update'
+		alias upgrade='sudo apt-get upgrade'
+		alias install='sudo apt-get install -y'
+		alias list='dpkg-query -l | grep'
+		alias search='apt-cache search'
+		alias show='apt-cache show'
+		alias pfiles='dpkg -L'
+		;;
+	esac
 	;;
 Darwin)
 	alias df='/bin/df -Ph -T nodevfs,autofs,nullfs'
@@ -17,11 +31,13 @@ esac
 
 alias ll='ls -l'
 alias lt='ls -ltr'
+alias ltt='ls -ltr | tail'
 alias p='less'
 alias d='dirs'
 alias pd='pushd'
 alias po='popd'
 alias h='history'
+alias agent='eval $(ssh-agent -s)'
 
 user=`whoami`
 if test x$SSH_AUTH_SOCK != xx ; then
@@ -36,3 +52,6 @@ fi
 # PS1="\u@\h \W\\$ "
 unset HISTFILE
 PATH=$PATH:$HOME/bin:/usr/local/bin
+if test -f $HOME/.ssh/env; then
+	. $HOME/.ssh/env
+fi
