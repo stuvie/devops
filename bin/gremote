@@ -1,0 +1,11 @@
+#!/bin/sh
+
+for dir in *; do
+	if test -d $dir; then
+		cd $dir || exit 1
+		echo ======== $dir ========
+		git remote -v
+		#git remote -v | grep fetch
+		cd ..
+	fi
+done

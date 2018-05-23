@@ -1,0 +1,3 @@
+#!/bin/sh
+# sf - source find
+find . -type f $* | egrep -v '/.git|/.gradle/|/target/|/dist/|/bin/|__|.log|/coverage/|.jpg|.png|.class|webapp/static/vendor|/.settings/|/.idea/|/.DS_Store|/node_modules|yo/dist|bower_components|.sass-cache'

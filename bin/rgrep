@@ -1,0 +1,4 @@
+#!/bin/sh
+# rgrep - recursive grep
+
+find . -type f -print | xargs grep -n "$@" 2>&1 | grep -v "No such file or directory"

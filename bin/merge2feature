@@ -1,0 +1,5 @@
+#!/bin/sh
+set -x
+git fetch origin
+sleep 2
+git merge origin/master
