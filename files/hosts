@@ -8,7 +8,7 @@ ff02::2		ip6-allrouters
 10.0.1.1	wifi.fywss.com wifi
 10.0.1.2	server.fywss.com server
 10.0.1.3	taco.fywss.com taco
-10.0.1.4	radical.fywss.com radical rad
+10.0.1.4	clash.fywss.com clash
 10.0.1.5	ops.fywss.com ops
 10.0.1.6	box.fywss.com box
 10.0.1.7	two.fywss.com two pi
