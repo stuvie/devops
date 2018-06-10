@@ -41,6 +41,8 @@ if test `uname` = Darwin; then
 	echo securing sshd:
 	cp darwin/files/sshd_config /etc/ssh
 	cp files/hosts /etc
+	chgrp staff /etc/hosts
+	chmod 664 /etc/hosts
 	cp darwin/files/rc.local /etc
 	cp darwin/files/local.startup.plist /Library/LaunchDaemons
 	mkdir /usr/local/servers
@@ -65,6 +67,12 @@ cp -a /etc $bakdir
 touch /etc/FRESH_INSTALL
 
 ./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
+
+if test $myhost = exit; then
+	echo quick exit
+	exit 0
+fi
+
 ./bin/setupaccount pi
 ./bin/setupaccount $staffaccount
 

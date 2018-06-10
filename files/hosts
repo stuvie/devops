@@ -12,3 +12,5 @@ ff02::2		ip6-allrouters
 10.0.1.5	ops.fywss.com ops
 10.0.1.6	box.fywss.com box
 10.0.1.7	two.fywss.com two pi
+
+10.20.0.1	fw.fywss.com fw firewall

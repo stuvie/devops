@@ -52,6 +52,6 @@ fi
 # PS1="\u@\h \W\\$ "
 unset HISTFILE
 PATH=$PATH:$HOME/bin:/usr/local/bin
-if test -f $HOME/.ssh/env; then
-	. $HOME/.ssh/env
+if test -f $HOME/.ssh/env.sh; then
+	. $HOME/.ssh/env.sh
 fi
