@@ -34,7 +34,7 @@ if test `uname` = Darwin; then
 	brew cask install google-chrome firefox
 	brew tap caskroom/versions
 	echo installing devtools via cask
-	brew cask install box-sync docker dropbox java8 macdown sourcetree sts virtualbox visual-studio-code
+	brew cask install box-sync docker dropbox java8 macdown slack sourcetree sts virtualbox visual-studio-code
 	echo installing media tools via cask
 	brew cask install handbrake plex-media-server transmission vlc
 	
