@@ -104,7 +104,7 @@ case "Darwin":
 	alias ser	brew services
 	alias df	df -Ph -T nodevfs,autofs,nullfs
 	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home
-	set path=(/opt/X11/bin ~/work/tools/spring/bin ~/work/tools/ant/bin /usr/local/mysql/bin ~/work/tools/maven/bin ~/work/tools/bin $path ~/Dropbox/dbin /opt/local/bin /usr/local/plan9/bin /Developer/usr/bin .)
+	set path=(/opt/X11/bin /usr/local/opt/node@10/bin ~/work/tools/spring/bin ~/work/tools/ant/bin /usr/local/mysql/bin ~/work/tools/maven/bin ~/work/tools/bin $path ~/Dropbox/dbin /opt/local/bin /usr/local/plan9/bin /Developer/usr/bin .)
 	breaksw
 default:
 	breaksw
@@ -123,6 +123,28 @@ case "server*":
 	breaksw
 case "taco*":
 	# setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
+	breaksw
+case "ads*":
+case "clash*":
+	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/zulu1.7.0_181.jdk/Contents/Home
+	setenv JAVA_TOOL_OPTIONS "-Dspring.profiles.active=LOCAL -Dfile.encoding=UTF8"
+	setenv SDKMAN_PLATFORM Darwin
+	setenv SDKMAN_CANDIDATES_API https://api.sdkman.io/2
+	setenv SDKMAN_VERSION 5.7.3+337
+	setenv SDKMAN_DIR ~/.sdkman
+	setenv SDKMAN_CANDIDATES_DIR ~/.sdkman/candidates
+	setenv GRADLE_HOME $SDKMAN_CANDIDATES_DIR/gradle/current
+	set path=($GRADLE_HOME/bin $path)
+	alias dbash	docker exec -it acuity_percona bash
+	alias dlogs	docker logs -f acuity_percona
+	alias mysql	mysql -A
+	alias ka	kafkacat -b localhost:9092
+	alias kq	kafkacat -b qa2-kafka-1:9092
+	alias kd	kafkacat -b dv1-kafka-1.dv1.acuityads.org:9092
+	alias kp	kafkacat -b 10.65.16.71:9092
+	alias java8 'setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home; set path=($JAVA_HOME/bin $path); rehash'
+	alias java88 'setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home; set path=($JAVA_HOME/bin $path); rehash'
 	breaksw
 case "*fywss*":
 case "*raspberrypi*":

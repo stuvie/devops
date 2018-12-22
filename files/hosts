@@ -19,3 +19,13 @@ ff02::2		ip6-allrouters
 10.20.1.25	kitchen-robot.fywss.com kitchen-robot
 10.20.1.30	sk-phone.fywss.com sk
 10.20.1.31	kp-phone.fywss.com kp
+
+74.54.18.146	gator.fywss.com gator
+
+# acuity ads
+10.65.19.253	jump jumpbox jumpbox.acuityads.com
+172.31.31.123	bitbucket.acuityads.com
+38.104.208.30	vpn.acuityplatform.com
+127.0.0.1	devdb
+172.0.172.10	local-zookeeper
+172.0.172.11	local-kafka

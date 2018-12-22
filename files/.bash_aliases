@@ -37,7 +37,8 @@ alias d='dirs'
 alias pd='pushd'
 alias po='popd'
 alias h='history'
-alias agent='eval $(ssh-agent -s)'
+ alias al='grep "^alias" ~/.bash_aliases'
+ alias agent='eval $(ssh-agent -s)'
 
 user=`whoami`
 if test x$SSH_AUTH_SOCK != xx ; then
@@ -50,8 +51,17 @@ if test x$SSH_AUTH_SOCK != xx ; then
 fi
 
 # PS1="\u@\h \W\\$ "
-unset HISTFILE
+# unset HISTFILE
 PATH=$PATH:$HOME/bin:/usr/local/bin
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
+
+case `hostname` in
+*jbox*)
+	alias eu='ssh eu-bdr1'
+	alias nj='ssh nj-bdr1'
+	alias la='ssh la-bdr1'
+	alias influx='ssh nj-mon2'
+	;;
+esac
