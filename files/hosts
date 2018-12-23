@@ -11,14 +11,18 @@ ff02::2		ip6-allrouters
 10.20.1.4	taco.fywss.com taco
 10.20.1.6	ops.fywss.com ops
 10.20.1.7	two.fywss.com two pi
+10.20.1.8	pie.fywss.com pie
 10.20.1.20	apple-tv.fywss.com apple-tv
 10.20.1.21	chromecast.fywss.com chromecast
 10.20.1.22	cassie-chromecast.fywss.com cassie-chromecast
 10.20.1.23	kaitlin-laptop.fywss.com kaitlin-laptop
 10.20.1.24	cassie-laptop.fywss.com cassie-laptop
 10.20.1.25	kitchen-robot.fywss.com kitchen-robot
+10.20.1.26	ads.fywss.com ads
 10.20.1.30	sk-phone.fywss.com sk
 10.20.1.31	kp-phone.fywss.com kp
+10.20.1.32	black.fywss.com black living-room-cam
+10.20.1.33	white.fywss.com white kitchen-cam
 
 74.54.18.146	gator.fywss.com gator
 
@@ -26,6 +30,6 @@ ff02::2		ip6-allrouters
 10.65.19.253	jump jumpbox jumpbox.acuityads.com
 172.31.31.123	bitbucket.acuityads.com
 38.104.208.30	vpn.acuityplatform.com
-127.0.0.1	devdb
+127.0.0.1	devdb sk-bidder sk-adserver.acuityplatform.com
 172.0.172.10	local-zookeeper
 172.0.172.11	local-kafka
