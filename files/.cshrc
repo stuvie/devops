@@ -144,7 +144,11 @@ case "clash*":
 	alias kd	kafkacat -b dv1-kafka-1.dv1.acuityads.org:9092
 	alias kp	kafkacat -b 10.65.16.71:9092
 	alias java8 'setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home; set path=($JAVA_HOME/bin $path); rehash'
-	alias java88 'setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home; set path=($JAVA_HOME/bin $path); rehash'
+	switch(`hostname`)
+	case "clash*":
+		setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home
+		breaksw
+	endsw
 	breaksw
 case "*fywss*":
 case "*raspberrypi*":

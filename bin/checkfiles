@@ -2,6 +2,7 @@
 
 startDir=$HOME/work/devops
 cd $startDir || exit 1
+git pull
 
 checkfile() {
 	src=files/$1
