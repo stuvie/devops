@@ -10,7 +10,7 @@ Linux)
 	export JAVA_HOME=/usr/lib/jvm/default-java
 
 	case `grep '^ID=' /etc/os-release` in
-	*ubuntu*|*debian*|*raspbian*)
+	*ubuntu*|*debian*|*raspbian*|*linuxmint*)
 		alias ltcp='sudo lsof \!* | grep -i tcp | grep "           "'
 		alias ctl='sudo systemctl'
 		alias update='sudo apt-get update'
