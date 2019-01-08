@@ -73,6 +73,14 @@ if test $myhost = exit; then
 	exit 0
 fi
 
+DISTRO=`head -n 1 /etc/issue`
+case $DISTRO in
+*Mint*)
+	apt install openssh-server
+	exit 0
+	;;
+esac
+
 ./bin/setupaccount pi
 ./bin/setupaccount $staffaccount
 

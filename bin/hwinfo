@@ -78,7 +78,7 @@ verbose=yes
 
 case $DISTRO in
 *Core*) free_args=-mt ; verbose=no ;;
-Ubuntu*|Raspbian*) free_args=-mt ;;
+Ubuntu*|Raspbian*|*Mint*) free_args=-mt ;;
 *) verbose=yes ;;
 esac
 
@@ -135,7 +135,7 @@ fi
 printf "\n<=== software installed ===>\n"
 case $DISTRO in
 *Core*) snap list ;;
-Raspbian*|Debian*|Ubuntu*) dpkg-query -l ;;
+Raspbian*|Debian*|Ubuntu*|*Mint*) dpkg-query -l ;;
 *) rpm -qa ;;
 esac
 
