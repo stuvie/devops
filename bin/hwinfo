@@ -132,14 +132,15 @@ if test $verbose = yes; then
 	lscpu
 fi
 
+printf "<=== disk info ===>\n"
+sudo fdisk -l
+printf "<=== mounted devices ===>\n"
+mount | grep /dev/ | sort
+
 printf "\n<=== software installed ===>\n"
+toolVersions
 case $DISTRO in
 *Core*) snap list ;;
 Raspbian*|Debian*|Ubuntu*|*Mint*) dpkg-query -l ;;
 *) rpm -qa ;;
 esac
-
-toolVersions
-
-printf "<=== disk info ===>\n"
-sudo fdisk -l
