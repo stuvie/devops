@@ -1,0 +1,43 @@
+	# nginx fywss-proxies
+	# include /etc/nginx/mime.types;
+	# default_type  application/octet-stream;
+	proxy_set_header X-FYWSS-PROXY "nginx-ops";
+	proxy_set_header Host $http_host;
+	proxy_set_header X-Forwarded-For $remote_addr;
+	proxy_set_header X-Proxies $proxy_add_x_forwarded_for;
+	proxy_set_header X-host $host;
+	proxy_set_header X-upstream-host $upstream_addr;
+	proxy_set_header X-request $request;
+	proxy_set_header X-request-uri $request_uri;
+	add_header FYWSS-SERVER $host always;
+
+	location ~ (php|cgi|check_proxy|CFIDE|HNAP1|muieblackcat|stssys|soapCaller|script|sitemap|axis) {
+	rewrite  (php|cgi|check_proxy|CFIDE|HNAP1|muieblackcat|stssys|soapCaller|script|sitemap|axis) /robots/warn break;
+		proxy_pass      http://10.20.1.1:9002;
+	}
+	location /sockjs-node/ {
+		proxy_pass	http://10.20.1.1:4200/sockjs-node/;
+	}
+	location /github-webhook/ {
+		proxy_pass	http://10.20.1.1:8080/github-webhook/;
+	}
+	location /robots/ {
+		proxy_pass	http://10.20.1.1:9002/robots/;
+	}
+	location /monitor/ {
+		access_log	/var/log/nginx/monitor.log  combined;
+		proxy_pass	http://10.20.1.1:9002/robots/;
+	}
+	location /prometheus/ {
+		proxy_pass	http://127.0.0.1:9090/;
+	}
+	location /static/ {
+		proxy_pass	http://127.0.0.1:9090/static/;
+	}
+	location /metrics {
+		proxy_pass	http://127.0.0.1:9100/metrics;
+	}
+	location /www/ {
+		root		/home/steve/lib;
+		index		index.html index.htm;
+	}

@@ -1,0 +1,53 @@
+# ops.fywss.com config for Prometheus.
+
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'fywss'
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  # - "first.rules"
+  # - "second.rules"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['ops.fywss.com:9090']
+
+  # node_exporter metrics from various servers
+  - job_name: node
+    static_configs:
+      - targets:
+        - ops.fywss.com:9100
+        - fw.fywss.com:9100
+        - server.fywss.com:9100
+        - clash.fywss.com:9100
+        - pie.fywss.com:9100
+        - two.fywss.com:9100
+
+  # collectd metrics from Linux servers
+  - job_name: collectd
+    scrape_interval: 30s
+    metrics_path: '/'
+    static_configs:
+      - targets:
+        - pie.fywss.com:9103
+        - two.fywss.com:9103
+        labels:
+          os: 'linux'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - ops.fywss.com:9093

@@ -65,3 +65,4 @@ case `hostname` in
 	alias influx='ssh nj-mon2'
 	;;
 esac
+CDPATH=".:~:~/work:/etc"
