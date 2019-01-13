@@ -122,8 +122,14 @@ head -2 /proc/meminfo
 printf "\n<=== /proc/cpuinfo ===>\n"
 cat /proc/cpuinfo
 
-printf "\n<=== TCP Network services ===>\n"
+printf "\n<=== TCP Network services via lsof ===>\n"
+sudo lsof -PiTCP -sTCP:LISTEN
+printf "\n<=== TCP Network services via netstat ===>\n"
 netstat -lt | sort
+printf "\n<=== UDP Network services via lsof ===>\n"
+sudo lsof -PiUDP
+printf "\n<=== UDP Network services via netstat ===>\n"
+netstat -lu
 
 if test $verbose = yes; then
 	printf "<=== hardware info ===>\n"
@@ -144,3 +150,8 @@ case $DISTRO in
 Raspbian*|Debian*|Ubuntu*|*Mint*) dpkg-query -l ;;
 *) rpm -qa ;;
 esac
+
+if test -e /usr/bin/npm; then
+	printf "\n<=== software installed via npm ===>\n"
+	npm list -g --depth=0
+fi
