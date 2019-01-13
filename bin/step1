@@ -78,7 +78,7 @@ fi
 DISTRO=`head -n 1 /etc/issue`
 case $DISTRO in
 *Mint*)
-	utilities="ansible tcsh nginx-extras mysql-server openssh-server prometheus prometheus-node-exporter prometheus-mysqld-exporter prometheus-alertmanager grafana influxdb influxdb-client collectd certbot apache2 nodejs npm"
+	utilities="ansible git tcsh nginx-extras mysql-server openssh-server prometheus prometheus-node-exporter prometheus-mysqld-exporter prometheus-alertmanager grafana influxdb influxdb-client collectd certbot apache2 nodejs npm"
 	# curl -s "https://get.sdkman.io" | bash
 	# sdk install springboot
 	echo installing updates and utilities:
