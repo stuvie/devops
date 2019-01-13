@@ -111,3 +111,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/steve/.sdkman"
+[[ -s "/home/steve/.sdkman/bin/sdkman-init.sh" ]] && source "/home/steve/.sdkman/bin/sdkman-init.sh"
