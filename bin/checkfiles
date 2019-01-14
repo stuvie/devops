@@ -15,7 +15,11 @@ checkfile .bash_aliases		$HOME
 checkfile .cshrc			$HOME
 checkfile authorized_keys	$HOME/.ssh
 checkfile ../bin/hwinfo			$HOME/bin
-checkfile hosts				/etc
+if test `hostname` = ads.fywss.com; then
+	cmd diff ../si/hosts.acuity		/etc/hosts
+else
+	checkfile hosts				/etc
+fi
 
 if test `uname` = Darwin; then
 	cd darwin
