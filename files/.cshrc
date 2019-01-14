@@ -150,6 +150,7 @@ case "clash*":
 		breaksw
 	endsw
 	breaksw
+case "fw":
 case "*fywss*":
 case "*raspberrypi*":
 	breaksw
