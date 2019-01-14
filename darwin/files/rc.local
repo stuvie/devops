@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # /etc/rc.local for MacOS
 #
@@ -24,6 +24,9 @@ chown steve $bootFile
 # echo node_boot_time_seconds $now >> $bootFile
 
 
+if test $host = server; then
+	/usr/local/sbin/collectd -f -C /usr/local/etc/collectd.conf &
+fi
 sudo -u steve /Users/steve/bin/daemons start
 
 exit 0
