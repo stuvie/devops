@@ -4,6 +4,8 @@
 #PS1="tmacc@staging$ "
 #PS1="vagrant@dev.tmacc.com$ "
 
+umask 022
+
 case `uname` in
 Linux)
 	alias df='/bin/df -h -x tmpfs -x devtmpfs'
@@ -20,6 +22,12 @@ Linux)
 		alias search='apt-cache search'
 		alias show='apt-cache show'
 		alias pfiles='dpkg -L'
+		;;
+	*centos*)
+		alias ltcp='sudo lsof \!* | grep -i tcp | grep "           "'
+		alias ctl='sudo systemctl'
+		alias ram='ps aux --sort -rss | head -20'
+		alias update='sudo apt-get update'
 		;;
 	esac
 	;;
@@ -52,7 +60,7 @@ fi
 
 # PS1="\u@\h \W\\$ "
 # unset HISTFILE
-PATH=$PATH:$HOME/bin:/usr/local/bin
+PATH=$PATH:$HOME/bin:/usr/local/bin:/home/steve/bin
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
@@ -65,4 +73,4 @@ case `hostname` in
 	alias influx='ssh nj-mon2'
 	;;
 esac
-CDPATH=".:~:~/work:/etc"
+CDPATH=".:~:~/work:~/projects:~/lib:/etc"

@@ -170,7 +170,7 @@ test -d /tmp/ssh-$user && \
 # An interactive shell -- set some stuff up
 set filec
 set notify=
-set cdpath=( . ~ ~/work ~/Documents ~/Documents/projects ~/Dropbox/projects ~/Dropbox ~/links ~/work/links )
+set cdpath=( . ~ ~/work ~/Documents ~/Documents/projects ~/Dropbox/projects ~/Dropbox ~/links ~/work/links ~/lib )
 set history=1000; unset savehist; unset autologout
 
 setenv TZ EST5EDT

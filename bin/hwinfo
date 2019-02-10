@@ -125,11 +125,11 @@ cat /proc/cpuinfo
 printf "\n<=== TCP Network services via lsof ===>\n"
 sudo lsof -PiTCP -sTCP:LISTEN
 printf "\n<=== TCP Network services via netstat ===>\n"
-sudo netstat -ltp | sort
+tcp
 printf "\n<=== UDP Network services via lsof ===>\n"
 sudo lsof -PiUDP
 printf "\n<=== UDP Network services via netstat ===>\n"
-sudo netstat -lup
+udp
 
 if test $verbose = yes; then
 	printf "<=== hardware info ===>\n"
