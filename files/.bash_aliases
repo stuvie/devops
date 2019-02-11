@@ -24,6 +24,7 @@ Linux)
 		alias pfiles='dpkg -L'
 		;;
 	*centos*)
+		export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64
 		alias ltcp='sudo lsof \!* | grep -i tcp | grep "           "'
 		alias ctl='sudo systemctl'
 		alias ram='ps aux --sort -rss | head -20'
@@ -60,7 +61,7 @@ fi
 
 # PS1="\u@\h \W\\$ "
 # unset HISTFILE
-PATH=$PATH:$HOME/bin:/usr/local/bin:/home/steve/bin
+PATH=$PATH:$HOME/bin:/usr/local/bin:/home/steve/bin:.
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
