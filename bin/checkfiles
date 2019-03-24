@@ -25,6 +25,7 @@ if test `uname` = Darwin; then
 	cd darwin
 	checkfile rc.local			$HOME/bin
 	checkfile rc.local			/etc
+	checkfile nginx.conf			/etc/nginx
 	checkfile ssh_config			/etc/ssh
 	checkfile sshd_config			/etc/ssh
 	checkfile local.startup.plist		/Library/LaunchDaemons
