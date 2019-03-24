@@ -1,4 +1,4 @@
-127.0.0.1	localhost raspberrypi Business1
+127.0.0.1	localhost raspberrypi Business1 cam localhost.fywss.com
 ::1         localhost ip6-localhost ip6-loopback
 ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
@@ -7,7 +7,7 @@ ff02::2		ip6-allrouters
 10.20.0.1	fw.fywss.com fw firewall
 10.20.0.2	airport.fywss.com airport
 10.20.1.1	server.fywss.com server mini
-10.20.1.3	clash.fywss.com clash
+10.20.1.3	clash.fywss.com clash clash2
 10.20.1.4	taco.fywss.com taco
 10.20.1.6	ops.fywss.com ops
 10.20.1.7	two.fywss.com two pi
@@ -24,9 +24,11 @@ ff02::2		ip6-allrouters
 10.20.1.32	black.fywss.com black living-room-cam
 10.20.1.33	white.fywss.com white kitchen-cam
 
-74.54.18.146	gator.fywss.com gator
+192.185.5.200	gator.fywss.com gator
+52.237.26.95	shah
+13.71.187.164	staging
 
-# acuity ads
+# acuity ads key systems
 10.65.19.253	jump jumpbox jumpbox.acuityads.com
 172.31.31.123	bitbucket.acuityads.com
 38.104.208.30	vpn.acuityplatform.com

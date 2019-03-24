@@ -11,9 +11,9 @@ checkfile() {
 }
 
 checkfile .bashrc			$HOME
-checkfile .bash_aliases		$HOME
+checkfile .bash_aliases			$HOME
 checkfile .cshrc			$HOME
-checkfile authorized_keys	$HOME/.ssh
+checkfile authorized_keys		$HOME/.ssh
 checkfile ../bin/hwinfo			$HOME/bin
 if test `hostname` = ads.fywss.com; then
 	cmd diff ../si/hosts.acuity		/etc/hosts
@@ -23,18 +23,19 @@ fi
 
 if test `uname` = Darwin; then
 	cd darwin
-	checkfile rc.local					$HOME/bin
-	checkfile rc.local					/etc
-	checkfile sshd_config				/etc/ssh
+	checkfile rc.local			$HOME/bin
+	checkfile rc.local			/etc
+	checkfile ssh_config			/etc/ssh
+	checkfile sshd_config			/etc/ssh
 	checkfile local.startup.plist		/Library/LaunchDaemons
 	exit 0
 fi
 
 checkfile authorized_keys		/home/pi/.ssh
 checkfile dhcpcd.conf			/etc
-checkfile rc.local				/etc
+checkfile rc.local			/etc
 checkfile resolv.conf			/etc
-checkfile services				/etc
+checkfile services			/etc
 checkfile prometheus.yml		/etc/prometheus
 checkfile sshd_config			/etc/ssh
 checkfile nginx/fywss-proxies		/etc

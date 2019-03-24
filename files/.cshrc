@@ -29,6 +29,7 @@ setenv LESSHISTFILE /dev/null
 
 unalias vi
 alias ls /bin/ls -F
+alias grep grep --color=auto
 alias psj jps -l
 alias p less -m
 alias pp cp -p
@@ -143,6 +144,11 @@ case "clash*":
 	alias kq	kafkacat -b qa2-kafka-1:9092
 	alias kd	kafkacat -b dv1-kafka-1.dv1.acuityads.org:9092
 	alias kp	kafkacat -b 10.65.16.71:9092
+	alias check	ssh jump ./sk/check.sh
+	alias pilot	"scp build/distributions/* jump:"
+	alias bdr	"tail -f ~/Documents/projects/dev/logs/*"
+	alias cache	"grep sites            ~/Documents/projects/dev/logs/bid-router.log | grep -v BatchMinus1 | grep --color=auto contains"
+	alias sites	"grep SiteInfoCacheDao ~/Documents/projects/dev/logs/bid-router.log | grep --color=auto exchangeId"
 	alias java8 'setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home; set path=($JAVA_HOME/bin $path); rehash'
 	switch(`hostname`)
 	case "clash*":

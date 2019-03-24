@@ -73,7 +73,7 @@ if test `uname` = Darwin; then
 fi
 
 DISTRO=`head -n 1 /etc/issue`
-free_args=-mto
+free_args=-mt
 verbose=yes
 
 case $DISTRO in
