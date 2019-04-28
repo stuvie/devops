@@ -127,8 +127,8 @@ case "taco*":
 	breaksw
 case "ads*":
 case "clash*":
-	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/zulu1.7.0_181.jdk/Contents/Home
+	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 	setenv JAVA_TOOL_OPTIONS "-Dspring.profiles.active=LOCAL -Dfile.encoding=UTF8"
 	setenv SDKMAN_PLATFORM Darwin
 	setenv SDKMAN_CANDIDATES_API https://api.sdkman.io/2
@@ -149,7 +149,7 @@ case "clash*":
 	alias bdr	"tail -f ~/Documents/projects/dev/logs/*"
 	alias cache	"grep sites            ~/Documents/projects/dev/logs/bid-router.log | grep -v BatchMinus1 | grep --color=auto contains"
 	alias sites	"grep SiteInfoCacheDao ~/Documents/projects/dev/logs/bid-router.log | grep --color=auto exchangeId"
-	alias java8 'setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home; set path=($JAVA_HOME/bin $path); rehash'
+	#alias java8 'setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home; set path=($JAVA_HOME/bin $path); rehash'
 	switch(`hostname`)
 	case "clash*":
 		setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home
