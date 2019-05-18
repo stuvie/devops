@@ -24,6 +24,7 @@ ff02::2		ip6-allrouters
 10.20.1.31	kp-phone.fywss.com kp
 10.20.1.32	black.fywss.com black living-room-cam
 10.20.1.33	white.fywss.com white kitchen-cam
+10.20.1.34	nvr.fywss.com nvr
 
 192.185.5.200	gator.fywss.com gator
 52.237.26.95	shah
