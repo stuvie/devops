@@ -31,3 +31,5 @@ ff02::2		ip6-allrouters
 13.71.187.164	staging
 
 # work systems
+10.244.149.190	vm
+127.0.0.1 kubernetes.docker.internal

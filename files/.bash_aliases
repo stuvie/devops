@@ -35,7 +35,10 @@ Linux)
 	;;
 Darwin)
 	alias df='/bin/df -Ph -T nodevfs,autofs,nullfs'
-	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
+	#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home
+	export GOROOT=/usr/local/opt/go/libexec
+	export GOPATH=~/work/go
 	;;
 esac
 
@@ -71,7 +74,7 @@ fi
 
 # PS1="\u@\h \W\\$ "
 # unset HISTFILE
-PATH=$PATH:$HOME/bin:/usr/local/bin:/home/steve/bin:.
+PATH=$PATH:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:.
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
@@ -88,7 +91,7 @@ case `hostname` in
 	alias al='egrep "^alias" ~/.bash_aliases'
 	;;
 esac
-CDPATH=".:~:~/work:~/projects:~/lib:/etc"
+CDPATH=".:~:~/work:~/work/go/src/gitlab.bluecatlabs.net/dns-platform/BSL:~/work/go/src/github.com/stuvie:~/projects:~/lib:/etc"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options

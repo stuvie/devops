@@ -156,6 +156,9 @@ case "clash*":
 		breaksw
 	endsw
 	breaksw
+case "MP15SKOTSOPOUL1":
+	setenv JAVA_HOME /Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home
+	breaksw
 case "fw":
 case "*fywss*":
 case "*raspberrypi*":
