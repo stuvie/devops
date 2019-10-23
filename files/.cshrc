@@ -136,7 +136,7 @@ case "clash*":
 	setenv SDKMAN_DIR ~/.sdkman
 	setenv SDKMAN_CANDIDATES_DIR ~/.sdkman/candidates
 	setenv GRADLE_HOME $SDKMAN_CANDIDATES_DIR/gradle/current
-	set path=($GRADLE_HOME/bin $path)
+	set path=($GRADLE_HOME/bin ~/bin/bluecat $path)
 	alias dbash	docker exec -it acuity_percona bash
 	alias dlogs	docker logs -f acuity_percona
 	alias mysql	mysql -A
@@ -179,7 +179,7 @@ test -d /tmp/ssh-$user && \
 # An interactive shell -- set some stuff up
 set filec
 set notify=
-set cdpath=( . ~ ~/work ~/Documents ~/Documents/projects ~/Dropbox/projects ~/Dropbox ~/links ~/work/links ~/lib )
+set cdpath=( . ~ ~/work/cats ~/work ~/Documents ~/Documents/projects /usr/local ~/Dropbox/projects ~/Dropbox ~/links ~/work/links ~/lib )
 set history=1000; unset savehist; unset autologout
 
 setenv TZ EST5EDT
@@ -204,6 +204,7 @@ alias z gzip -v
 alias un gunzip -vN
 alias zipls gzip -vl
 alias shell echo /bin/csh is not very C-like
+alias ktl kubectl
 
 # tcpdump aliases for network testing
 alias tcpd    tcpdump -N		# show short-form hostnames

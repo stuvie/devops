@@ -15,9 +15,9 @@ fi
 
 host=`shost`
 now=`date +%s`
-bootFile=/servers/monitors/node_exporter/text-data/boot.prom
+bootFile=/usr/local/servers/monitors/node_exporter/text-data/boot.prom
 
-echo $host rebooting at `date`
+echo $host rebooting at `date` after `cat /Users/steve/work/log/uptime`
 printf 'node_hostname{name=\"%s\"} 1\n' $host > $bootFile
 chown steve $bootFile
 # echo node_boot_time $now >> $bootFile

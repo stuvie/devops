@@ -39,6 +39,8 @@ Darwin)
 	export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home
 	export GOROOT=/usr/local/opt/go/libexec
 	export GOPATH=~/work/go
+	export GO111MODULE=on
+	export GOPRIVATE=gitlab.bluecatlabs.net/dns-platform/BSL/*
 	;;
 esac
 
@@ -50,6 +52,7 @@ alias d='dirs'
 alias pd='pushd'
 alias po='popd'
 alias h='history'
+alias ktl='kubectl'
 alias check='/home/skotsopoulos/sk/check.sh'
 alias bdr='tail -f /opt/bid-router/logs/* /opt/bid-router/bin/nohup.out'
 alias bdrp='ps aux | grep [c]om.acuityads.bid.router'
@@ -74,7 +77,7 @@ fi
 
 # PS1="\u@\h \W\\$ "
 # unset HISTFILE
-PATH=$PATH:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:.
+PATH=/usr/local/gradle-4.10.2/bin:$PATH:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:.
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
@@ -91,7 +94,7 @@ case `hostname` in
 	alias al='egrep "^alias" ~/.bash_aliases'
 	;;
 esac
-CDPATH=".:~:~/work:~/work/go/src/gitlab.bluecatlabs.net/dns-platform/BSL:~/work/go/src/github.com/stuvie:~/projects:~/lib:/etc"
+CDPATH=".:~:~/work/cats:~/work:~/work/go/src/gitlab.bluecatlabs.net/dns-platform/BSL:~/work/go/src/github.com/stuvie:~/projects:~/lib:/etc"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
