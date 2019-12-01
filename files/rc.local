@@ -17,7 +17,12 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
+export PATH=$PATH:/usr/bin:/usr/sbin:/usr/local/bin:/Users/steve/bin:/home/steve/bin
 export TZ=EST5EDT
-echo `hostname` rebooting at `date` >> /var/log/reboots
+echo `hostname` rebooting at `date` after `cat /home/steve/work/log/uptime` >> /var/log/reboots
+
+if test `hostname -s` = ops; then
+	sudo -u steve /home/steve/projects/robots/robots start
+fi
 
 exit 0
