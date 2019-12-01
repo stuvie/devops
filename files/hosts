@@ -4,6 +4,7 @@ ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
 10.20.255.255	broadcast bcast
 
+192.168.0.12	fw-ext.fywss.com fw-ext firewall-ext
 10.20.0.1	fw.fywss.com fw firewall
 10.20.0.2	airport.fywss.com airport
 10.20.1.1	server.fywss.com server

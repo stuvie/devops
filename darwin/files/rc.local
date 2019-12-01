@@ -24,7 +24,7 @@ chown steve $bootFile
 # echo node_boot_time_seconds $now >> $bootFile
 
 
-if test $host = server; then
+if test $host = mini; then
 	/usr/local/sbin/collectd -f -C /usr/local/etc/collectd.conf &
 fi
 sudo -u steve /Users/steve/bin/daemons start

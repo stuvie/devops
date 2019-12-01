@@ -53,14 +53,15 @@ alias pd='pushd'
 alias po='popd'
 alias h='history'
 alias ktl='kubectl'
-alias check='/home/skotsopoulos/sk/check.sh'
-alias bdr='tail -f /opt/bid-router/logs/* /opt/bid-router/bin/nohup.out'
-alias bdrp='ps aux | grep [c]om.acuityads.bid.router'
-alias cache='grep sites            /opt/bid-router/logs/bid-router.log | grep -v BatchMinus1 | grep --color=auto contains'
-alias sites='grep SiteInfoCacheDao /opt/bid-router/logs/bid-router.log | grep --color=auto exchangeId'
-alias slow='grep sampled /opt/bid-router/logs/bid-router-trace.log | sort -n -k5'
-alias traces='tail -f /opt/bid-router/logs/bid-router-trace.log'
-alias alerts='grep alert /opt/bid-router/logs/bid-router-trace.log'
+
+ alias check='/home/skotsopoulos/sk/check.sh'
+ alias bdr='tail -f /opt/bid-router/logs/* /opt/bid-router/bin/nohup.out'
+ alias bdrp='ps aux | grep [c]om.acuityads.bid.router'
+ alias cache='grep sites            /opt/bid-router/logs/bid-router.log | grep -v BatchMinus1 | grep --color=auto contains'
+ alias sites='grep SiteInfoCacheDao /opt/bid-router/logs/bid-router.log | grep --color=auto exchangeId'
+ alias slow='grep sampled /opt/bid-router/logs/bid-router-trace.log | sort -n -k5'
+ alias traces='tail -f /opt/bid-router/logs/bid-router-trace.log'
+ alias alerts='grep alert /opt/bid-router/logs/bid-router-trace.log'
 
  alias trace='grep \!* /opt/bid-router/logs/bid-router-trace.log'
  alias agent='eval $(ssh-agent -s)'
@@ -77,7 +78,7 @@ fi
 
 # PS1="\u@\h \W\\$ "
 # unset HISTFILE
-PATH=/usr/local/gradle-4.10.2/bin:$PATH:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:.
+PATH=/usr/local/gradle-4.10.2/bin:$PATH:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:$HOME/work/cli:.
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
@@ -91,6 +92,9 @@ case `hostname` in
 	alias nj2='ssh nj-bdr2'
 	alias la='ssh la-bdr1'
 	alias influx='ssh nj-mon2'
+	alias al='egrep "^alias" ~/.bash_aliases'
+	;;
+*)
 	alias al='egrep "^alias" ~/.bash_aliases'
 	;;
 esac
