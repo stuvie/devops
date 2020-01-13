@@ -76,6 +76,9 @@ case "Linux":
 		alias search	apt-cache search
 		alias show	apt-cache show
 		alias pfiles	dpkg -L
+		setenv LANGUAGE en_US.UTF-8
+		setenv LANG en_US.UTF-8
+		setenv LC_ALL en_US.UTF-8
 		breaksw
 	default:
 		alias rinst	rpm -ivh

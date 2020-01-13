@@ -14,8 +14,9 @@ ff02::2		ip6-allrouters
 10.20.1.6	ops.fywss.com ops
 10.20.1.7	two.fywss.com two pi
 10.20.1.8	pie.fywss.com pie
+10.20.1.19	livingroom-chromecast.fywss.com livingroom-chromecast
 10.20.1.20	apple-tv.fywss.com apple-tv
-10.20.1.21	chromecast.fywss.com chromecast
+10.20.1.21	bedroom-chromecast.fywss.com bedroom-chromecast
 10.20.1.22	cassie-chromecast.fywss.com cassie-chromecast
 10.20.1.23	kaitlin-laptop.fywss.com kaitlin-laptop
 10.20.1.24	cassie-laptop.fywss.com cassie-laptop
@@ -26,6 +27,8 @@ ff02::2		ip6-allrouters
 10.20.1.32	black.fywss.com black living-room-cam
 10.20.1.33	white.fywss.com white kitchen-cam
 10.20.1.34	nvr.fywss.com nvr
+10.20.1.35	steve-ipad.fywss.com steve-ipad
+10.20.1.36	airport-express.fywss.com airport-express
 
 192.185.5.200	gator.fywss.com gator
 52.237.26.95	shah
@@ -33,4 +36,6 @@ ff02::2		ip6-allrouters
 
 # work systems
 10.244.149.190	vm
+240.0.0.2	cli-mgmt
+240.0.0.3	cli-node
 127.0.0.1 kubernetes.docker.internal

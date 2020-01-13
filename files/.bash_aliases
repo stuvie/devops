@@ -22,6 +22,9 @@ Linux)
 		alias search='apt-cache search'
 		alias show='apt-cache show'
 		alias pfiles='dpkg -L'
+		export LANGUAGE=en_US.UTF-8
+		export LANG=en_US.UTF-8
+		export LC_ALL=en_US.UTF-8
 		;;
 	*centos*)
 		export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64
