@@ -1,3 +1,37 @@
+# FYWSS services
+nomad-api	4646/tcp
+nomad-rpc	4647/tcp
+nomad-serf	4648/tcp
+consul-api	8500/tcp
+consul-dns	8600/tcp
+consul-server	8300/tcp
+consul-lan-serf	8301/tcp
+consul-wan-serf	8302/tcp
+grafana		3000/tcp
+influxdb	8086/tcp
+influxdb-rpc	8088/tcp
+influxdb-opentsdb	4242/tcp
+telegraf	8186/tcp
+chronograf	8888/tcp
+apache2		800/tcp
+tomcat		8080/tcp
+tomcat-shutdown	8005/tcp
+haproxy		8585/tcp
+netdata-web	19999/tcp
+netdata-statsd	8125/tcp
+kibana		5601/tcp
+elasticsearch	9200/tcp
+elastic-rest	9300/tcp
+robots		9002/tcp
+kapacitor	9092/tcp
+sonarqube	9000/tcp
+sonar-elastic	9001/tcp
+redis		6379/tcp
+covalence-core	5701/tcp
+covalence-fxnoded	7900/tcp
+covalence-fxsensormgrd	7780/tcp
+covalence-fxcomponentd	7777/tcp
+
 # Network services, Internet style
 #
 # Note that it is presently the policy of IANA to assign a single well-known
@@ -382,8 +416,6 @@ x11-6		6006/tcp
 x11-6		6006/udp
 x11-7		6007/tcp
 x11-7		6007/udp
-x11-10		6010/tcp
-x11-11		6011/tcp
 gnutella-svc	6346/tcp			# gnutella
 gnutella-svc	6346/udp
 gnutella-rtr	6347/tcp			# gnutella
@@ -394,7 +426,6 @@ sge-execd	6445/tcp	sge_execd	# Grid Engine Execution Service
 sge-execd	6445/udp	sge_execd
 mysql-proxy	6446/tcp			# MySQL Proxy
 mysql-proxy	6446/udp
-nginx		6060/tcp
 babel		6696/udp			# Babel Routing Protocol
 ircs-u		6697/tcp		# Internet Relay Chat via TLS/SSL
 afs3-fileserver 7000/tcp	bbs		# file server itself
@@ -419,10 +450,9 @@ afs3-rmtsys	7009/tcp			# remote cache manager service
 afs3-rmtsys	7009/udp
 font-service	7100/tcp	xfs		# X Font Service
 font-service	7100/udp	xfs
-http-alt	8080/tcp	webcache	# WWW caching service
+#http-alt	8080/tcp	webcache	# WWW caching service
 http-alt	8080/udp
 puppet		8140/tcp			# The Puppet master service
-nginx-ssl	8443/tcp
 bacula-dir	9101/tcp			# Bacula Director
 bacula-dir	9101/udp
 bacula-fd	9102/tcp			# Bacula File Daemon
@@ -537,7 +567,6 @@ afbackup	2988/tcp			# Afbackup system
 afbackup	2988/udp
 afmbackup	2989/tcp			# Afmbackup system
 afmbackup	2989/udp
-grafana		3000/tcp
 xtell		4224/tcp			# xtell server
 fax		4557/tcp			# FAX transmission service (old)
 hylafax		4559/tcp			# HylaFAX client-server protocol (new)
@@ -561,12 +590,10 @@ sane-port	6566/tcp	sane saned	# SANE network scanner daemon
 ircd		6667/tcp			# Internet Relay Chat
 zope-ftp	8021/tcp			# zope management by ftp
 tproxy		8081/tcp			# Transparent Proxy
-omniorb		8088/tcp			# OmniORB
+#omniorb		8088/tcp			# OmniORB
 omniorb		8088/udp
 clc-build-daemon 8990/tcp			# Common lisp build daemon
 xinetd		9098/tcp
-prometheus	9090/tcp
-node-exporter	9100/tcp
 mandelspawn	9359/udp	mandelbrot	# network mandelbrot
 git		9418/tcp			# Git Version Control System
 zope		9673/tcp			# zope server
@@ -596,3 +623,10 @@ tfido		60177/tcp			# fidonet EMSI over telnet
 fido		60179/tcp			# fidonet EMSI over TCP
 
 # Local services
+prometheus	9090/tcp
+alertmanager	9093/tcp
+alertmanager2	6783/tcp
+node-exporter	9100/tcp
+zookeeper-client 2181/tcp
+zookeeper-2	 21822tcp
+mysql2		3307/tcp

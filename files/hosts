@@ -38,4 +38,6 @@ ff02::2		ip6-allrouters
 10.244.149.190	vm
 240.0.0.2	cli-mgmt
 240.0.0.3	cli-node
-127.0.0.1 kubernetes.docker.internal
+127.0.0.1	kubernetes.docker.internal
+54.213.123.213	sk-aws-node aws
+54.188.229.32	aws-pickle pickle

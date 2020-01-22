@@ -14,17 +14,17 @@ if test `whoami` = root; then
 fi
 
 host=`shost`
-now=`date +%s`
-bootFile=/usr/local/servers/monitors/node_exporter/text-data/boot.prom
-
 echo $host rebooting at `date` after `cat /Users/steve/work/log/uptime`
-printf 'node_hostname{name=\"%s\"} 1\n' $host > $bootFile
-chown steve $bootFile
-# echo node_boot_time $now >> $bootFile
-# echo node_boot_time_seconds $now >> $bootFile
 
+if test $host = xmini; then
+	now=`date +%s`
+	bootFile=/usr/local/servers/monitors/node_exporter/text-data/boot.prom
 
-if test $host = mini; then
+	printf 'node_hostname{name=\"%s\"} 1\n' $host > $bootFile
+	chown steve $bootFile
+	# echo node_boot_time $now >> $bootFile
+	# echo node_boot_time_seconds $now >> $bootFile
+
 	/usr/local/sbin/collectd -f -C /usr/local/etc/collectd.conf &
 fi
 sudo -u steve /Users/steve/bin/daemons start

@@ -55,6 +55,7 @@ alias d='dirs'
 alias pd='pushd'
 alias po='popd'
 alias h='history'
+alias ctl='systemctl'
 alias ktl='kubectl'
 
  alias check='/home/skotsopoulos/sk/check.sh'
