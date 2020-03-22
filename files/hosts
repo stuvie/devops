@@ -39,5 +39,16 @@ ff02::2		ip6-allrouters
 240.0.0.2	cli-mgmt
 240.0.0.3	cli-node
 127.0.0.1	kubernetes.docker.internal
-54.213.123.213	sk-aws-node aws
-54.188.229.32	aws-pickle pickle
+18.236.81.161	aws-pickle pickle
+18.236.112.49	aws-node   sk-aws-node awsnode aws steve
+54.191.203.87	aws-test   awstest test acme
+35.160.249.24	poc
+35.164.105.163	poc-1
+54.71.22.49	poc-2
+34.214.104.124	poc-3
+35.167.150.224	poc-4
+34.210.19.59	poc-5
+# Added by Docker Desktop
+# To allow the same kube context to work on the host and the container:
+127.0.0.1 kubernetes.docker.internal
+# End of section

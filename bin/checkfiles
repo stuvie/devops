@@ -29,6 +29,8 @@ if test `uname` = Darwin; then
 	checkfile ssh_config			/etc/ssh
 	checkfile sshd_config			/etc/ssh
 	checkfile local.startup.plist		/Library/LaunchDaemons
+	checkfile homebrew.mxcl.nomad.plist	/usr/local/Cellar/nomad/*
+	checkfile homebrew.mxcl.consul.plist	/usr/local/Cellar/consul/*
 	exit 0
 fi
 
