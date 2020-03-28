@@ -10,11 +10,13 @@ checkfile() {
 	diff $src $installed
 }
 
+cmd pwd
 checkfile .bashrc			$HOME
 checkfile .bash_aliases			$HOME
 checkfile .cshrc			$HOME
 checkfile authorized_keys		$HOME/.ssh
 checkfile ../bin/hwinfo			$HOME/bin
+
 if test `hostname` = ads.fywss.com; then
 	cmd diff ../si/hosts.acuity		/etc/hosts
 else
@@ -23,6 +25,7 @@ fi
 
 if test `uname` = Darwin; then
 	cd darwin
+	cmd pwd
 	checkfile rc.local			$HOME/bin
 	checkfile rc.local			/etc
 	checkfile nginx.conf			/etc/nginx
@@ -31,6 +34,14 @@ if test `uname` = Darwin; then
 	checkfile local.startup.plist		/Library/LaunchDaemons
 	checkfile homebrew.mxcl.nomad.plist	/usr/local/Cellar/nomad/*
 	checkfile homebrew.mxcl.consul.plist	/usr/local/Cellar/consul/*
+	checkfile sshd_config			/etc/ssh
+	cmd sudo diff files/sudoers		/etc
+	cd ../`shost` || exit 0
+	set -x
+	pwd
+	diff nomad.hcl		/etc/nomad
+	diff consul.hcl		/etc/consul
+	diff telegraf.conf	/usr/local/etc
 	exit 0
 fi
 
@@ -44,3 +55,4 @@ checkfile sshd_config			/etc/ssh
 checkfile nginx/fywss-proxies		/etc
 checkfile nginx/sites-enabled/https	/etc
 checkfile nginx/sites-enabled/default	/etc
+cd work/ops/replace && ./checkfiles;
