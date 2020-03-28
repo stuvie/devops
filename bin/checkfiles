@@ -63,5 +63,8 @@ set -x
 pwd
 diff telegraf.conf	/etc/telegraf
 diff sshd_config	/etc/ssh
+if ! test -e /etc/nomad; then
+	exit 0
+fi
 diff nomad.hcl		/etc/nomad
 diff consul.hcl		/etc/consul
