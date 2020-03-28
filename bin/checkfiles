@@ -34,7 +34,6 @@ if test `uname` = Darwin; then
 	checkfile local.startup.plist		/Library/LaunchDaemons
 	checkfile homebrew.mxcl.nomad.plist	/usr/local/Cellar/nomad/*
 	checkfile homebrew.mxcl.consul.plist	/usr/local/Cellar/consul/*
-	checkfile sshd_config			/etc/ssh
 	cmd sudo diff files/sudoers		/etc
 	cd ../`shost` || exit 0
 	set -x
@@ -62,7 +61,7 @@ fi
 cd ./`shost` || exit 0
 set -x
 pwd
+diff telegraf.conf	/etc/telegraf
 diff sshd_config	/etc/ssh
 diff nomad.hcl		/etc/nomad
 diff consul.hcl		/etc/consul
-diff telegraf.conf	/etc/telegraf
