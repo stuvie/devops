@@ -1,7 +1,7 @@
 	# nginx fywss-proxies
-	include /etc/nginx/mime.types;
-	default_type  application/octet-stream;
-	proxy_set_header X-FYWSS-PROXY "nginx";
+	# include /etc/nginx/mime.types;
+	# default_type  application/octet-stream;
+	proxy_set_header X-FYWSS-PROXY "nginx-ops";
 	proxy_set_header Host $http_host;
 	proxy_set_header X-Forwarded-For $remote_addr;
 	proxy_set_header X-Proxies $proxy_add_x_forwarded_for;
@@ -9,42 +9,100 @@
 	proxy_set_header X-upstream-host $upstream_addr;
 	proxy_set_header X-request $request;
 	proxy_set_header X-request-uri $request_uri;
-
-	location ~ \.css {
-		add_header  Content-Type    text/css;
-	}
-	location ~ \.js {
-		add_header  Content-Type    application/x-javascript;
-	}
+	add_header FYWSS-SERVER $host always;
 
 	location ~ (php|cgi|check_proxy|CFIDE|HNAP1|muieblackcat|stssys|soapCaller|script|sitemap|axis) {
 	rewrite  (php|cgi|check_proxy|CFIDE|HNAP1|muieblackcat|stssys|soapCaller|script|sitemap|axis) /robots/warn break;
-		proxy_pass      http://10.0.1.2:9002;
+		proxy_pass	http://ops.fywss.com:9002;
+		#proxy_pass      http://10.20.1.1:9002;
+	}
+
+	location /sockjs-node/ {
+		proxy_pass	http://10.20.1.1:4200/sockjs-node/;
+	}
+	location /github-webhook/ {
+		proxy_pass	http://10.20.1.1:8080/github-webhook/;
 	}
 	location /robots/ {
-		proxy_pass	http://10.0.1.2:9002/robots/;
-		#proxy_pass	http://127.0.0.1:9002/robots/;
+		proxy_pass	http://ops.fywss.com:8585/robots/;
+		#proxy_pass	http://ops.fywss.com:9002/robots/;
+	}
+	location /robots2/ {
+		proxy_pass	http://ops.fywss.com:9002/robots/;
 	}
 	location /monitor/ {
 		access_log	/var/log/nginx/monitor.log  combined;
-		proxy_pass	http://127.0.0.1:9002/robots/;
-	}
-	location /grafana/ {
-		proxy_pass	http://127.0.0.1:3000/;
-	}
-	location /login {
-		proxy_pass	http://127.0.0.1:3000/;
+		proxy_pass	http://ops.fywss.com:9002/robots/;
 	}
 	location /prometheus/ {
-		proxy_pass	http://127.0.0.1:9090/;
+		proxy_pass	http://ops.fywss.com:9090/;
 	}
 	location /static/ {
-		proxy_pass	http://127.0.0.1:9090/static/;
+		proxy_pass	http://ops.fywss.com:9090/static/;
 	}
-	location /node/ {
-		proxy_pass	http://127.0.0.1:9100/metrics;
+	location /metrics {
+		proxy_pass	http://ops.fywss.com:9100/metrics;
+	}
+	location /write {
+		proxy_pass	http://ops.fywss.com:8086/write;
+	}
+	location /query {
+		proxy_pass	http://ops.fywss.com:8086/query;
+	}
+	location /apache/ {
+		proxy_pass	http://ops.fywss.com:800/;
+	}
+	location /es/ {
+		proxy_pass	http://ops.fywss.com:8585/es/;
+	}
+	location /elk/ {
+		proxy_pass	http://mini.fywss.com:9200/;
+	}
+	location /favicon.ico {
+		access_log off;
+	}
+	location /stub_status {
+		stub_status on;
+		access_log off;
+	}
+	location /nginx-status {
+		stub_status on;
+		access_log off;
+	}
+	location /server-status {
+		proxy_pass	http://ops.fywss.com:800/server-status;
+		access_log off;
+	}
+	location /tomcat/ {
+		proxy_pass	http://ops.fywss.com:8080/;
+	}
+	location /jenkins/ {
+		proxy_pass	http://ops.fywss.com:8585/jenkins/;
+		#proxy_pass	http://ops.fywss.com:8080/jenkins/;
+	}
+	location /sonar/ {
+		proxy_pass	http://ops.fywss.com:9000/sonar/;
+		#proxy_redirect	http://ops.fywss.com:9000/;
+	}
+	location /elasticsearch-status {
+		proxy_pass	http://ops.fywss.com:9200/_nodes;
+	}
+	location /kibana/ {
+		proxy_pass	http://ops.fywss.com:5601/kibana/;
+	}
+	location /kitchen/ {
+		proxy_pass	http://kitchen-cam/webdav/sdcard/;
+	}
+	location /living-room/ {
+		proxy_pass	http://living-room-cam/webdav/sdcard/;
 	}
 	location /www/ {
 		root		/home/steve/lib;
 		index		index.html index.htm;
+	}
+	location ~* (xjpg|xgif|xpng) {
+		error_page 404 /catalog/image/brand/BULK.gif;
+	}
+	location /xcatalog/api/ {
+		proxy_pass	http://ops.fywss.com:8888/shah-services/;
 	}

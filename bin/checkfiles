@@ -45,14 +45,22 @@ if test `uname` = Darwin; then
 	exit 0
 fi
 
-checkfile authorized_keys		/home/pi/.ssh
-checkfile dhcpcd.conf			/etc
-checkfile rc.local			/etc
-checkfile resolv.conf			/etc
 checkfile services			/etc
-checkfile prometheus.yml		/etc/prometheus
-checkfile sshd_config			/etc/ssh
+checkfile rc.local			/etc
+
+if test `uname -m` = armv7l; then
+	checkfile sshd_config			/etc/ssh
+	checkfile nginx/sites-enabled/https	/etc
+	checkfile authorized_keys		/home/pi/.ssh
+	checkfile dhcpcd.conf			/etc
+	checkfile resolv.conf			/etc
+	cd $HOME/work/ops/replace && ./checkfiles;
+	exit 0
+fi
+
 checkfile nginx/fywss-proxies		/etc
-checkfile nginx/sites-enabled/https	/etc
 checkfile nginx/sites-enabled/default	/etc
-cd work/ops/replace && ./checkfiles;
+cd ./`shost` || exit 0
+set -x
+pwd
+diff sshd_config                   /etc/ssh
