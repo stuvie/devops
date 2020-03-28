@@ -50,17 +50,18 @@ checkfile rc.local			/etc
 
 if test `uname -m` = armv7l; then
 	checkfile sshd_config			/etc/ssh
-	checkfile nginx/sites-enabled/https	/etc
-	checkfile authorized_keys		/home/pi/.ssh
 	checkfile dhcpcd.conf			/etc
 	checkfile resolv.conf			/etc
 	cd $HOME/work/ops/replace && ./checkfiles;
-	exit 0
+else
+	checkfile nginx/fywss-proxies		/etc
+	checkfile nginx/sites-enabled/default	/etc
 fi
 
-checkfile nginx/fywss-proxies		/etc
-checkfile nginx/sites-enabled/default	/etc
 cd ./`shost` || exit 0
 set -x
 pwd
-diff sshd_config                   /etc/ssh
+diff sshd_config	/etc/ssh
+diff nomad.hcl		/etc/nomad
+diff consul.hcl		/etc/consul
+diff telegraf.conf	/etc/telegraf
