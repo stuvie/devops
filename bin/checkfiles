@@ -6,7 +6,7 @@ cd $startDir || exit 1
 checkfile() {
 	src=files/$1
 	installed=$2/$1
-	echo diff $src $installed
+	echo + diff $src $installed
 	diff $src $installed
 }
 
@@ -37,12 +37,11 @@ if test `uname` = Darwin; then
 	checkfile homebrew.mxcl.vault.plist	/usr/local/Cellar/vault/*
 	cmd sudo diff files/sudoers		/etc
 	cd ../`shost` || exit 0
-	set -x
-	pwd
-	diff nomad.hcl		/etc/nomad
-	diff consul.hcl		/etc/consul
-	diff vault.hcl		/etc/vault
-	diff telegraf.conf	/usr/local/etc
+	cmd pwd
+	cmd diff nomad.hcl	/etc/nomad
+	cmd diff consul.hcl	/etc/consul
+	cmd diff vault.hcl	/etc/vault
+	cmd diff telegraf.conf	/usr/local/etc
 	exit 0
 fi
 
@@ -61,13 +60,12 @@ else
 fi
 
 cd ./`shost` || exit 0
-set -x
-pwd
-diff telegraf.conf	/etc/telegraf
-diff sshd_config	/etc/ssh
+cmd pwd
+cmd diff telegraf.conf	/etc/telegraf
+cmd diff sshd_config	/etc/ssh
 if ! test -e /etc/nomad; then
 	exit 0
 fi
-diff nomad.hcl		/etc/nomad
-diff consul.hcl		/etc/consul
-diff vault.hcl		/etc/vault
+cmd diff nomad.hcl		/etc/nomad
+cmd diff consul.hcl		/etc/consul
+cmd diff vault.hcl		/etc/vault
