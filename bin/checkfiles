@@ -10,7 +10,11 @@ checkfile() {
 	diff $src $installed
 }
 
-cmd pwd
+printdir() {
+	echo ===== checking files in `pwd`
+}
+
+printdir
 checkfile .bashrc			$HOME
 checkfile .bash_aliases			$HOME
 checkfile .cshrc			$HOME
@@ -25,7 +29,7 @@ fi
 
 if test `uname` = Darwin; then
 	cd darwin
-	cmd pwd
+	printdir
 	checkfile rc.local			$HOME/bin
 	checkfile rc.local			/etc
 	checkfile nginx.conf			/etc/nginx
@@ -37,7 +41,7 @@ if test `uname` = Darwin; then
 	checkfile homebrew.mxcl.vault.plist	/usr/local/Cellar/vault/*
 	cmd sudo diff files/sudoers		/etc
 	cd ../`shost` || exit 0
-	cmd pwd
+	printdir
 	cmd diff nomad.hcl	/etc/nomad
 	cmd diff consul.hcl	/etc/consul
 	cmd diff vault.hcl	/etc/vault
@@ -60,7 +64,7 @@ else
 fi
 
 cd ./`shost` || exit 0
-cmd pwd
+printdir
 cmd diff telegraf.conf	/etc/telegraf
 cmd diff sshd_config	/etc/ssh
 if ! test -e /etc/nomad; then
