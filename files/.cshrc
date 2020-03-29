@@ -96,6 +96,7 @@ case "Linux":
 	breaksw
 case "Darwin":
 	setenv HOMEBREW_CASK_OPTS "--appdir=/Applications/dev-tools"
+	alias ctl	svc
 	alias cask	brew cask
 	alias update	brew update
 	alias upgrade	brew upgrade
