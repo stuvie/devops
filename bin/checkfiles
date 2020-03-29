@@ -34,12 +34,14 @@ if test `uname` = Darwin; then
 	checkfile local.startup.plist		/Library/LaunchDaemons
 	checkfile homebrew.mxcl.nomad.plist	/usr/local/Cellar/nomad/*
 	checkfile homebrew.mxcl.consul.plist	/usr/local/Cellar/consul/*
+	checkfile homebrew.mxcl.vault.plist	/usr/local/Cellar/vault/*
 	cmd sudo diff files/sudoers		/etc
 	cd ../`shost` || exit 0
 	set -x
 	pwd
 	diff nomad.hcl		/etc/nomad
 	diff consul.hcl		/etc/consul
+	diff vault.hcl		/etc/vault
 	diff telegraf.conf	/usr/local/etc
 	exit 0
 fi
@@ -68,3 +70,4 @@ if ! test -e /etc/nomad; then
 fi
 diff nomad.hcl		/etc/nomad
 diff consul.hcl		/etc/consul
+diff vault.hcl		/etc/vault
