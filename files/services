@@ -7,6 +7,8 @@ consul-dns	8600/tcp
 consul-server	8300/tcp
 consul-lan-serf	8301/tcp
 consul-wan-serf	8302/tcp
+vault-api	8200/tcp
+vault-rpc	8201/tcp
 grafana		3000/tcp
 influxdb	8086/tcp
 influxdb-rpc	8088/tcp

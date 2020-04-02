@@ -82,7 +82,7 @@ fi
 
 # PS1="\u@\h \W\\$ "
 # unset HISTFILE
-PATH=/usr/local/gradle-4.10.2/bin:$PATH:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:$HOME/work/cli:.
+PATH=/usr/local/gradle-4.10.2/bin:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:$HOME/work/cli:$PATH:.
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
