@@ -16,29 +16,15 @@ runcmd()
 	$* 2>&1
 }
 
-toolVersions() {
-	runcmd java -version
-	runcmd spring --version
-	runcmd node -v
-	runcmd npm -version
-	if test ! -e /usr/local/bin/nginx; then
-		return
-	fi
-	runcmd yarn -v
-	runcmd mysql --version
-	runcmd nginx -v
-	runcmd vault -v
-}
-
 if test `uname` = Darwin; then
   printf "<=== SYSTEM ===>\n"
 	echo "  Distro info:   `sw_vers -productName` `sw_vers -productVersion`"
 	echo "  Kernel:        `uname -mrsv`"
+	echo "  Date:          $DATE"
 	echo "  Uptime:        $D_UP"
 	echo "  Memory:        `top -o mem -l 1 -ncols 13 | grep PhysMem`"
 	echo "  Swap:          `top -o mem -l 1 -ncols 13 | grep VM:`"
 	echo "  Architecture   $CPU"
-	echo "  Date:          $DATE"
 	echo "  Path:          $PATH"
 
 	printf "\n<=== NETWORK ===>\n"
@@ -52,23 +38,10 @@ if test `uname` = Darwin; then
 	printf "\n<=== DISK space ===>\n"
 	df -Ph -T nodevfs,autofs,nullfs
 
-	printf "\n<=== TCP Network services via lsof ===>\n"
-	lsof -PiTCP -sTCP:LISTEN
-	printf "\n<=== TCP Network services via netstat ===>\n"
-	netstat -anp tcp | egrep  'Active|Proto|LISTEN' | sort
+	# netlsof
 
-	if test ! -e /usr/local/bin/brew; then
-		exit 0
-	fi
-	printf "\n<=== services installed via brew ===>\n"
-	brew services list
-	printf "\n<=== software installed via brew ===>\n"
-	brew list
-	printf "\n<=== software installed via cask ===>\n"
-	brew cask list
-	printf "\n<=== software installed via npm ===>\n"
-	npm list -g --depth=0
-	toolVersions
+	swinfo
+
 	exit 0
 fi
 
@@ -85,6 +58,7 @@ esac
 printf "<=== SYSTEM ===>\n"
 echo "  Distro info:	"$DISTRO""
 printf "  Kernel:\t"$KERNEL"\n"
+printf "  Date:\t\t"$DATE"\n"
 printf "  Uptime:\t"$D_UP"\n"
 free $free_args | awk '
 /Mem/{print "  Memory:\tTotal: " $2 "Mb\tUsed: " $3 "Mb\tFree: " $4 "Mb"}
@@ -103,7 +77,6 @@ while(i<=NF){
 }
 printf "\n"
 }'
-printf "  Date:\t\t"$DATE"\n"
 printf "\n<=== USER ===>\n"
 printf "  User:\t\t"$ME" (uid:"$UID")\n"
 printf "  Groups:\t"$MYGROUPS"\n"
@@ -122,14 +95,10 @@ head -2 /proc/meminfo
 printf "\n<=== /proc/cpuinfo ===>\n"
 cat /proc/cpuinfo
 
-printf "\n<=== TCP Network services via lsof ===>\n"
-sudo lsof -PiTCP -sTCP:LISTEN
+# netlsof
+
 printf "\n<=== TCP Network services via netstat ===>\n"
 netstat -lt
-printf "\n<=== UDP Network services via lsof ===>\n"
-sudo lsof -PiUDP
-printf "\n<=== UDP Network services via netstat ===>\n"
-netstat -lu
 
 if test $verbose = yes; then
 	printf "<=== hardware info ===>\n"
@@ -143,15 +112,4 @@ sudo fdisk -l
 printf "<=== mounted devices ===>\n"
 mount | grep /dev/ | sort
 
-printf "\n<=== software installed ===>\n"
-toolVersions
-case $DISTRO in
-*Core*) snap list ;;
-Raspbian*|Debian*|Ubuntu*|*Mint*) dpkg-query -l ;;
-*) rpm -qa ;;
-esac
-
-if test -e /usr/bin/npm; then
-	printf "\n<=== software installed via npm ===>\n"
-	npm list -g --depth=0
-fi
+# swinfo

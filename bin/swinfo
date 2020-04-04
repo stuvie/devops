@@ -1,0 +1,53 @@
+#!/bin/bash
+
+runcmd()
+{
+	echo running: $*
+	$* 2>&1
+}
+
+toolVersions() {
+	runcmd java -version
+	runcmd spring --version
+	runcmd node -v
+	runcmd npm -version
+	if test ! -e /usr/local/bin/nginx; then
+		return
+	fi
+	runcmd yarn -v
+	runcmd mysql --version
+	runcmd nginx -v
+	runcmd vault -v
+}
+
+if test `uname` = Darwin; then
+	if test ! -e /usr/local/bin/brew; then
+		exit 0
+	fi
+	printf "\n<=== services installed via brew ===>\n"
+	brew services list
+	printf "\n<=== software installed via brew ===>\n"
+	brew list
+	printf "\n<=== software installed via cask ===>\n"
+	brew cask list
+	printf "\n<=== software installed via npm ===>\n"
+	npm list -g --depth=0
+	toolVersions
+	exit 0
+fi
+
+DISTRO=`head -n 1 /etc/issue`
+
+printf "\n<=== software installed ===>\n"
+toolVersions
+case $DISTRO in
+*Core*) snap list ;;
+Raspbian*|Debian*|Ubuntu*|*Mint*) dpkg-query -l ;;
+*) rpm -qa ;;
+esac
+
+if test -e /usr/bin/npm; then
+	printf "\n<=== software installed via npm ===>\n"
+	npm list -g --depth=0
+fi
+sleep 1
