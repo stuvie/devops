@@ -3,11 +3,24 @@
 startDir=$HOME/work/devops
 cd $startDir || exit 1
 
+tmpf=/tmp/checkfiles.$$
+
+difffile() {
+	src=$1
+	installed=$2
+	if test $installed = /etc/sudoers; then
+		sudo diff $src $installed > $tmpf 2>&1
+	else
+		diff $src $installed > $tmpf 2>&1
+	fi
+	if test -s $tmpf; then
+		echo + diff $src $installed
+		cat $tmpf
+	fi
+}
+
 checkfile() {
-	src=files/$1
-	installed=$2/$1
-	echo + diff $src $installed
-	diff $src $installed
+	difffile files/$1 $2/$1
 }
 
 printdir() {
@@ -22,7 +35,7 @@ checkfile authorized_keys		$HOME/.ssh
 checkfile ../bin/hwinfo			$HOME/bin
 
 if test `hostname` = ads.fywss.com; then
-	cmd diff ../si/hosts.acuity		/etc/hosts
+	difffile ../si/hosts.acuity		/etc/hosts
 else
 	checkfile hosts				/etc
 fi
@@ -39,13 +52,16 @@ if test `uname` = Darwin; then
 	checkfile homebrew.mxcl.nomad.plist	/usr/local/Cellar/nomad/*
 	checkfile homebrew.mxcl.consul.plist	/usr/local/Cellar/consul/*
 	checkfile homebrew.mxcl.vault.plist	/usr/local/Cellar/vault/*
-	cmd sudo diff files/sudoers		/etc
+	difffile files/sudoers		/etc/sudoers
 	cd ../`shost` || exit 0
 	printdir
-	cmd diff nomad.hcl	/etc/nomad
-	cmd diff consul.hcl	/etc/consul
-	cmd diff vault.hcl	/etc/vault
-	cmd diff telegraf.conf	/usr/local/etc
+	difffile nomad.hcl	/etc/nomad
+	difffile consul.hcl	/etc/consul
+	if ! test -e /etc/vault; then
+		exit 0
+	fi
+	difffile vault.hcl	/etc/vault
+	difffile telegraf.conf	/usr/local/etc
 	exit 0
 fi
 
@@ -65,11 +81,11 @@ fi
 
 cd ./`shost` || exit 0
 printdir
-cmd diff telegraf.conf	/etc/telegraf
-cmd diff sshd_config	/etc/ssh
+difffile telegraf.conf	/etc/telegraf
+difffile sshd_config	/etc/ssh
 if ! test -e /etc/nomad; then
 	exit 0
 fi
-cmd diff nomad.hcl		/etc/nomad
-cmd diff consul.hcl		/etc/consul
-cmd diff vault.hcl		/etc/vault
+difffile nomad.hcl		/etc/nomad
+difffile consul.hcl		/etc/consul
+difffile vault.hcl		/etc/vault
