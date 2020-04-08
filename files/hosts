@@ -40,8 +40,9 @@ ff02::2		ip6-allrouters
 10.244.149.190	vm
 240.0.0.2	cli-mgmt
 240.0.0.3	cli-node
+240.0.0.9	sdp-steve sdp
 127.0.0.1	kubernetes.docker.internal
-18.236.81.161	aws-pickle pickle
+52.25.115.251	aws-pickle pickle
 18.236.112.49	aws-node   sk-aws-node awsnode aws steve
 54.191.203.87	aws-test   awstest test acme
 35.160.249.24	poc
