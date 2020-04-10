@@ -15,6 +15,7 @@ ff02::2		ip6-allrouters
 10.20.1.6	ops.fywss.com ops
 10.20.1.7	two.fywss.com two pi
 10.20.1.8	pie.fywss.com pie
+10.20.1.9	pi4.fywss.com pi4
 10.20.1.19	livingroom-chromecast.fywss.com livingroom-chromecast
 10.20.1.20	apple-tv.fywss.com apple-tv
 10.20.1.21	bedroom-chromecast.fywss.com bedroom-chromecast
@@ -40,17 +41,11 @@ ff02::2		ip6-allrouters
 10.244.149.190	vm
 240.0.0.2	cli-mgmt
 240.0.0.3	cli-node
-240.0.0.9	sdp-steve sdp
-127.0.0.1	kubernetes.docker.internal
+240.0.0.9	sdp-steve sdp-vagrant sdp
 52.25.115.251	aws-pickle pickle
 18.236.112.49	aws-node   sk-aws-node awsnode aws steve
-54.191.203.87	aws-test   awstest test acme
-35.160.249.24	poc
-35.164.105.163	poc-1
-54.71.22.49	poc-2
-34.214.104.124	poc-3
-35.167.150.224	poc-4
-34.210.19.59	poc-5
+54.191.203.87	sdpt aws-test   awstest test acme
+#
 # Added by Docker Desktop
 # To allow the same kube context to work on the host and the container:
 127.0.0.1 kubernetes.docker.internal

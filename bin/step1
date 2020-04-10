@@ -6,6 +6,10 @@ utilities="ansible lshw tcsh lsof tcpdump time locales-all nginx"
 startdir=`pwd`
 appdir=`basename $startdir`
 bakdir=/bak/fresh
+if test `uname` = Darwin; then
+	# root filesystem is mounted read-only in MacOS Catalina
+	bakdir=/var/bak/fresh
+fi
 
 usage() {
 	echo usage: sudo ./bin/step1 HOSTNAME IP_ADDRESS && exit 1
@@ -28,7 +32,11 @@ if test -d $bakdir; then
 fi
 
 echo creating $bakdir
-mkdir -p $bakdir
+mkdir -p $bakdir || exit 2
+
+./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
+./bin/swinfo > $bakdir/swinfo-$myhost.txt
+./bin/ifconfigs > $bakdir/ifconfigs-$myhost.txt
 
 if test `uname` = Darwin; then
 	if test ! -e /usr/bin/git; then
@@ -52,21 +60,20 @@ if test `uname` = Darwin; then
 	ln -s /usr/local/var/log/nginx /var/log
 	ln -s /usr/local/etc/nginx /etc
 	ln -s /Users/steve/bin /var/root
-	scutil --set HostName $myhost
-	scutil --set LocalHostName `echo $myhost | sed 's/\..*//'`
-	scutil --set ComputerName $myhost
-	dscacheutil -flushcache
+	if test $myhost != bluecat; then
+		scutil --set HostName $myhost
+		scutil --set LocalHostName `echo $myhost | sed 's/\..*//'`
+		scutil --set ComputerName $myhost
+		dscacheutil -flushcache
+	fi
 	touch /etc/LOCAL_changes_start
 	echo getting hardware info
-	./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
 	system_profiler -detailLevel basic > $bakdir/system-$myhost.txt
 	exit 0
 fi
 
 cp -a /etc $bakdir
 touch /etc/FRESH_INSTALL
-
-./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
 
 if test $myhost = exit; then
 	echo quick exit
@@ -91,9 +98,8 @@ case $DISTRO in
 	touch /etc/LOCAL_changes_start
 	bakdir=/bak/step1
 	echo creating $bakdir
-	mkdir -p $bakdir
+	mkdir -p $bakdir || exit 2
 	cp -a /etc $bakdir
-	./bin/hwinfo > $bakdir/hwinfo-$myhost.txt
 	echo securing sshd:
 	cp mint/files/sshd_config /etc/ssh
 	systemctl restart ssh
@@ -118,6 +124,8 @@ case $DISTRO in
 	exit 0
 	;;
 esac
+
+# below here, we assume you are running Raspbian OS
 
 ./bin/setupaccount pi
 
