@@ -25,6 +25,7 @@ Generally, everything you'd want to customize is at the top of each script
 ```
 sudo ./bin/step1 HOSTNAME IP_ADDRESS
 ```
+For example:
 ```
 sudo ./bin/step1 pi4.fywss.com 10.20.1.9
 ```
