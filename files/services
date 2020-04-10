@@ -29,6 +29,8 @@ kapacitor	9092/tcp
 sonarqube	9000/tcp
 sonar-elastic	9001/tcp
 redis		6379/tcp
+vnc-server0	5900/tcp
+vnc-server1	5901/tcp
 covalence-core	5701/tcp
 covalence-fxnoded	7900/tcp
 covalence-fxsensormgrd	7780/tcp
