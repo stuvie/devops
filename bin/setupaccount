@@ -5,6 +5,14 @@ mygroup=fywss
 staffaccount="steve"
 keyfile=files/authorized_keys
 
+usage() {
+	echo usage: ./bin/setupaccount USER && exit 1
+}
+
+if test $# -lt 1; then
+        usage
+fi
+
 user=$1
 
 homedir=/home/$user
@@ -12,10 +20,6 @@ if test `uname` = Darwin; then
 	homedir=/Users/$user
 fi
 sshdir=$homedir/.ssh
-
-usage() {
-	echo usage: ./bin/setupaccount USER && exit 1
-}
 
 dotfileSetup() {
 	cp -p files/.??* $homedir

@@ -128,6 +128,8 @@ esac
 # below here, we assume you are running Raspbian OS
 
 ./bin/setupaccount pi
+cp files/.??* /root
+ln -s /home/steve/bin /root/bin
 
 echo enabling sshd:
 sudo systemctl enable ssh
@@ -148,8 +150,17 @@ echo $myhost > /etc/hostname
 hostname $myhost
 
 echo installing updates and utilities:
+curl -sL https://repos.influxdata.com/influxdb.key | apt-key add -
+echo "deb https://repos.influxdata.com/debian stretch stable" | tee /etc/apt/sources.list.d/influxdb.list
+
 set -x
 apt-get update
 apt-get upgrade -y
-apt-get install -y $utilities
+apt-get install -y $utilities telegraf
 # cp files/default /etc/nginx/sites-available/default
+
+echo installing docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+usermod -aG docker pi
+usermod -aG docker $staffaccount
