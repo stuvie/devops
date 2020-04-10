@@ -129,14 +129,10 @@ esac
 
 ./bin/setupaccount pi
 
-if test `systemctl is-enabled ssh`; then
-	echo sshd is already enabled
-else
-	echo enabling sshd:
-	sudo systemctl enable ssh
-	sudo systemctl start ssh
-	sleep 10 # give it time to start up
-fi
+echo enabling sshd:
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sleep 10 # give it time to start up
 
 echo securing sshd:
 cp files/sshd_config /etc/ssh
@@ -156,4 +152,4 @@ set -x
 apt-get update
 apt-get upgrade -y
 apt-get install -y $utilities
-cp files/default /etc/nginx/sites-available/default
+# cp files/default /etc/nginx/sites-available/default

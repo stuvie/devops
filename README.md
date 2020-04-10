@@ -5,7 +5,7 @@ Automated configuration of systems running MacOS or Raspbian Linux
 # Prerequisites
 
 * Apple system with the latest MacOS installed
-* Raspberry Pi 2 or 3 with [Raspbian OS](https://www.raspberrypi.org/downloads/raspbian/) installed
+* Raspberry Pi 2, 3 or 4 with [Raspbian OS](https://www.raspberrypi.org/downloads/raspbian/) installed
 
 ## Configure your system
 
@@ -24,6 +24,9 @@ Generally, everything you'd want to customize is at the top of each script
 ### Step 1: Configure system and install a few utilities
 ```
 sudo ./bin/step1 HOSTNAME IP_ADDRESS
+```
+```
+sudo ./bin/step1 pi4.fywss.com 10.20.1.9
 ```
 This script will make a backup copy of ``/etc`` under ``/bak/fresh``, create an admin user account (steve, by default) and improve the security of your ssh service by disabling password authentication.
 

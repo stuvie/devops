@@ -70,7 +70,6 @@ checkfile rc.local			/etc
 
 if test `uname -m` = armv7l; then
 	checkfile sshd_config			/etc/ssh
-	checkfile dhcpcd.conf			/etc
 	checkfile resolv.conf			/etc
 	cd $HOME/work/ops/replace && ./checkfiles;
 	cd $startDir || exit 1
@@ -81,6 +80,9 @@ fi
 
 cd ./`shost` || exit 0
 printdir
+if test `uname -m` = armv7l; then
+	difffile dhcpcd.conf	/etc
+fi
 difffile telegraf.conf	/etc/telegraf
 difffile sshd_config	/etc/ssh
 if ! test -e /etc/nomad; then
