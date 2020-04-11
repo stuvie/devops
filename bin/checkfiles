@@ -69,7 +69,7 @@ fi
 checkfile services			/etc
 checkfile rc.local			/etc
 
-if test `uname -m` = armv7l; then
+if test `uname -m` = armv7l || test `uname -m` = armv6l ; then
 	checkfile sshd_config			/etc/ssh
 	checkfile resolv.conf			/etc
 	# cd $HOME/work/ops/replace && ./checkfiles;
