@@ -45,8 +45,9 @@ if test `uname` = Darwin; then
 fi
 
 if test -d $homedir; then
-	echo user $user already exists but please change the password now
-	passwd
+	echo user $user already exists and will hope you already changed the password
+	# echo user $user already exists but please change the password now
+	# passwd $user
 else
 	echo creating user: $user
 	groupadd $mygroup
