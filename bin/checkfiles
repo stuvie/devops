@@ -79,6 +79,10 @@ else
 	checkfile nginx/sites-enabled/default	/etc
 fi
 
+if ! test -d `shost`; then
+	checkfile telegraf.conf	/etc/telegraf
+fi
+
 cd ./`shost` || exit 0
 printdir
 if test `uname -m` = armv7l; then

@@ -127,6 +127,7 @@ esac
 
 # below here, we assume you are running Raspbian OS
 
+touch /etc/LOCAL_changes_start
 ./bin/setupaccount pi
 cp files/.??* /root
 ln -s /home/steve/bin /root/bin
@@ -161,6 +162,9 @@ set -x
 apt-get update
 apt-get upgrade -y
 apt-get install -y $utilities telegraf
+mkdir /etc/telegraf/orig
+cp -p /etc/telegraf/telegraf.conf /etc/telegraf/orig
+cp files/telegraf.conf    /etc/telegraf
 # cp files/default /etc/nginx/sites-available/default
 
 hw=`./bin/hw`
