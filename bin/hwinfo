@@ -1,4 +1,5 @@
 #!/bin/bash
+PATH=$PATH:./bin
 
 IFS=$'\n'
 UPTIME=`uptime`
@@ -15,6 +16,8 @@ runcmd()
 	echo running: $*
 	$* 2>&1
 }
+
+hw
 
 if test `uname` = Darwin; then
   printf "<=== SYSTEM ===>\n"

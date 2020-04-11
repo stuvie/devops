@@ -27,7 +27,7 @@ dotfileSetup() {
 		echo setting up ssh for $user
 		mkdir -p $sshdir
 		cp $keyfile $sshdir
-		chown -R $user $sshdir
+		chown -R $user $sshdir $homedir/.??*
 		chmod 600 $sshdir/*
 		chmod 700 $sshdir
 	fi
