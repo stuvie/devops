@@ -45,6 +45,7 @@ if test `uname` = Darwin; then
 	printdir
 	checkfile rc.local			$HOME/bin
 	checkfile rc.local			/etc
+	checkfile services			/etc
 	checkfile nginx.conf			/etc/nginx
 	checkfile ssh_config			/etc/ssh
 	checkfile sshd_config			/etc/ssh

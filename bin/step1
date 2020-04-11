@@ -159,8 +159,16 @@ apt-get upgrade -y
 apt-get install -y $utilities telegraf
 # cp files/default /etc/nginx/sites-available/default
 
-echo installing docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-usermod -aG docker pi
-usermod -aG docker $staffaccount
+hw=`./bin/hw`
+case $hw in
+*Pi 4*|*Pi 3*)
+	echo installing docker on $hw
+	curl -fsSL https://get.docker.com -o get-docker.sh
+	sh get-docker.sh
+	usermod -aG docker pi
+	usermod -aG docker $staffaccount
+	;;
+*)
+	echo not installing docker on $hw
+	;;
+esac

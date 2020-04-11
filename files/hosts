@@ -32,6 +32,10 @@ ff02::2		ip6-allrouters
 10.20.1.35	steve-ipad.fywss.com steve-ipad
 10.20.1.36	airport-express.fywss.com airport-express
 10.20.1.37	kaitlin-ipad.fywss.com kaitlin-ipad
+10.20.1.40	pi0.fywss.com pi0
+10.20.1.41	pete.fywss.com pete
+10.20.1.42	pi2.fywss.com pi2
+10.20.1.43	pi3.fywss.com pi3
 
 192.185.5.200	gator.fywss.com gator
 52.237.26.95	shah

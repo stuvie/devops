@@ -1,0 +1,23 @@
+#!/bin/bash
+# hw: print out a single line describing the system hardware
+
+mDev=/proc/device-tree/model
+
+case `uname` in
+Darwin)
+	hw="`system_profiler SPHardwareDataType | grep 'Model Name' | sed 's/Model Name: //'`"
+	;;
+Linux)
+	if test -e $mDev; then
+		hw="`tr -d '\0' < $mDev`"
+	elif test -e /usr/bin/inxi; then
+		hw="`inxi -M -c 0 | head -1 | sed 's/Machine:   //'`"
+	else
+		hw="`lshw -C cpu 2>/dev/null | grep product | sed 's/product: //'`"
+	fi
+	;;
+*)
+	hw=unknown
+	;;
+esac
+echo $hw
