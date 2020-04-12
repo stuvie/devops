@@ -124,3 +124,5 @@ PasswordAuthentication no
 PermitEmptyPasswords no
 ChallengeResponseAuthentication no
 KerberosAuthentication no
+# XAuthLocation added by XQuartz (http://xquartz.macosforge.org)
+XAuthLocation /opt/X11/bin/xauth
