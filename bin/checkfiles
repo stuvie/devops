@@ -79,7 +79,7 @@ else
 	checkfile nginx/sites-enabled/default	/etc
 fi
 
-if ! test -d `shost`; then
+if ! test -d hostconfigs/`shost`; then
 	checkfile telegraf.conf	/etc/telegraf
 fi
 
