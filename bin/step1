@@ -85,7 +85,7 @@ fi
 DISTRO=`head -n 1 /etc/issue`
 case $DISTRO in
 *Mint*)
-	utilities="ansible git rwho rwhod tcsh nginx-extras mysql-server openssh-server prometheus prometheus-node-exporter prometheus-mysqld-exporter prometheus-alertmanager influxdb influxdb-client collectd certbot apache2 nodejs npm"
+	utilities="ansible git rwho rwhod tcsh nginx-extras mysql-server openssh-server influxdb influxdb-client certbot apache2 nodejs npm"
 	# curl -s "https://get.sdkman.io" | bash
 	# sdk install springboot
 	echo installing updates and utilities:
@@ -93,32 +93,36 @@ case $DISTRO in
 	apt-get update
 	apt-get upgrade -y
 	apt-get install -y $utilities
-	sudo dpkg -i mint/files/powerpanel_132_amd64.deb
+
 	set +x
-	touch /etc/LOCAL_changes_start
 	bakdir=/bak/step1
 	echo creating $bakdir
 	mkdir -p $bakdir || exit 2
 	cp -a /etc $bakdir
-	echo securing sshd:
-	cp mint/files/sshd_config /etc/ssh
-	systemctl restart ssh
+	
+	touch /etc/LOCAL_changes_start
 	cp files/rc.local /etc
 	cp files/hosts /etc
 	chgrp $staffaccount /etc/hosts
 	chmod 664 /etc/hosts
-	cp mint/files/sudoers /etc
-	cp mint/files/services /etc
-	cp mint/files/fywss-proxies /etc/nginx
-	cp mint/files/default /etc/nginx/sites-available
+
+	cd hostconfigs/mint || exit 2
+	sudo dpkg -i files/powerpanel_132_amd64.deb
+	
+	echo securing sshd:
+	cp files/sshd_config /etc/ssh
+	systemctl restart ssh
+	
+	cp files/sudoers /etc
+	cp files/services /etc
+	cp files/fywss-proxies /etc/nginx
+	cp files/default /etc/nginx/sites-available
 	systemctl restart nginx
-	cp mint/files/prometheus.yml /etc/prometheus/prometheus.yml
-	systemctl restart prometheus
-	cp mint/files/influxdb.conf /etc/influxdb
+	
+	cp files/influxdb.conf /etc/influxdb
 	systemctl restart influxdb
-	cp mint/files/network.conf /etc/collectd/collectd.conf.d
-	cp mint/files/collectd.conf /etc/collectd
-	systemctl restart collectd
+	
+	cd ../..
 	./bin/hwinfo > $bakdir/hwinfo-$myhost-installed.txt
 	echo you will want to replace prometheus and node-exporter binaries next
 	exit 0

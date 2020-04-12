@@ -54,7 +54,7 @@ if test `uname` = Darwin; then
 	checkfile homebrew.mxcl.consul.plist	/usr/local/Cellar/consul/*
 	checkfile homebrew.mxcl.vault.plist	/usr/local/Cellar/vault/*
 	difffile files/sudoers		/etc/sudoers
-	cd ../`shost` || exit 0
+	cd ../hostconfigs/`shost` || exit 0
 	printdir
 	difffile nomad.hcl	/etc/nomad
 	difffile consul.hcl	/etc/consul
@@ -83,7 +83,7 @@ if ! test -d `shost`; then
 	checkfile telegraf.conf	/etc/telegraf
 fi
 
-cd ./`shost` || exit 0
+cd hostconfigs/`shost` || exit 0
 printdir
 if test `uname -m` = armv7l; then
 	difffile dhcpcd.conf	/etc

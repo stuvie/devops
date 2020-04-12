@@ -47,3 +47,4 @@
 Host *
 	SendEnv LANG LC_*
 	UseKeychain yes
+	XAuthLocation /opt/X11/bin/xauth
