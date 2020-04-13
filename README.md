@@ -30,7 +30,7 @@ For example:
 sudo ./bin/step1 pi0.fywss.com 10.20.1.40 | tee step1.out
 sudo ./bin/step1 pi2.fywss.com 10.20.1.42 | tee step1.out
 sudo ./bin/step1 pi3.fywss.com 10.20.1.43 | tee step1.out
-sudo ./bin/step1 pete.fywss.com 10.20.1.41 | tee step1.out
+sudo ./bin/step1 berry.fywss.com dhcp | tee step1.out
 ```
 This script will make a backup copy of ``/etc`` under ``/bak/fresh``, create an admin user account (steve, by default) and improve the security of your ssh service by disabling password authentication.
 

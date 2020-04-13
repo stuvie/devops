@@ -152,7 +152,11 @@ systemctl restart ssh
 
 cp files/hosts /etc
 cp files/services /etc
-cat files/dhcpcd.conf | sed s/10.0.1.5/$myipaddress/ > /etc/dhcpcd.conf
+
+if ! test $myipaddress = dhcp; then
+	cat files/dhcpcd.conf | sed s/10.0.1.5/$myipaddress/ > /etc/dhcpcd.conf
+fi
+
 cp files/resolv.conf /etc
 cp files/rc.local /etc
 echo $myhost > /etc/hostname
