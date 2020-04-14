@@ -5,7 +5,7 @@ client_addr="0.0.0.0"
 
 datacenter = "fywss"
 data_dir = "/var/lib/consul"
-retry_join = ["mini.fywss.com", "ops.fywss.com", "pie.fywss.com"]
+retry_join = ["mini.fywss.com", "ops.fywss.com", "pi4.fywss.com"]
 
 server = true
 bootstrap_expect = 3
