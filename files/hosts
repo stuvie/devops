@@ -6,14 +6,22 @@ ff02::2		ip6-allrouters
 
 192.168.0.1	modem.fywss.com cable-modem modem
 192.168.0.12	fw-ext.fywss.com fw-ext firewall-ext
+
+# first hop
 10.20.0.1	fw.fywss.com fw firewall
 10.20.0.2	airport.fywss.com airport
-10.20.1.1	server.fywss.com server
+
+# on switch
+# 10.20.20.1	mini.fywss.com mini
+# 10.20.20.2	pie.fywss.com pie
+# 10.20.20.3	ops.fywss.com ops
+
+# wifi
+10.20.1.1	mini2.fywss.com mini2 mini-wifi
 10.20.1.2	mini.fywss.com mini
 10.20.1.3	clash.fywss.com clash clash2
 10.20.1.4	taco.fywss.com taco
 10.20.1.6	ops.fywss.com ops
-10.20.1.7	two.fywss.com two pi
 10.20.1.8	pie.fywss.com pie
 10.20.1.9	pi4.fywss.com pi4
 10.20.1.19	livingroom-chromecast.fywss.com livingroom-chromecast
@@ -38,18 +46,21 @@ ff02::2		ip6-allrouters
 10.20.1.43	pi3.fywss.com pi3
 10.20.1.50	berry.fywss.com berry
 
+# remote
 192.185.5.200	gator.fywss.com gator
 52.237.26.95	shah
 13.71.187.164	staging
 
 # work systems
-10.244.149.190	vm
+# 10.244.149.190	vm
 240.0.0.2	cli-mgmt
 240.0.0.3	cli-node
 240.0.0.9	sdp-steve sdp-vagrant sdp
-52.25.115.251	aws-pickle pickle
-18.236.112.49	aws-node   sk-aws-node awsnode aws steve
-54.191.203.87	sdpt aws-test   awstest test acme
+
+# aws systems
+54.191.203.87	acme aws-test   awstest test
+34.223.7.124	steve
+
 #
 # Added by Docker Desktop
 # To allow the same kube context to work on the host and the container:
