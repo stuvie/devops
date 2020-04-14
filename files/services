@@ -35,6 +35,9 @@ covalence-core	5701/tcp
 covalence-fxnoded	7900/tcp
 covalence-fxsensormgrd	7780/tcp
 covalence-fxcomponentd	7777/tcp
+x11-10		6010/tcp
+x11-11		6011/tcp
+x11-12		6012/tcp
 
 # Network services, Internet style
 #
