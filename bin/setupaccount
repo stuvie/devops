@@ -50,14 +50,17 @@ if test -d $homedir; then
 	# passwd $user
 else
 	echo creating user: $user
-	groupadd $mygroup
-	adduser --gecos $user --ingroup $mygroup --shell $myshell $user
 
 	if test $user = $staffaccount; then
 		# we don't want to do this for regular accounts, such as 'pi'
+		groupadd $mygroup
+		adduser --gecos $user --ingroup $mygroup --shell $myshell $user
+
 		usermod -G adm,root,www-data,operator,staff $user
 		chfn -f 'Steve Kotsopoulos' $user
 		echo "$user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/011_$user-nopasswd
+	else
+		adduser --gecos $user $user
 	fi
 fi
 
