@@ -1,10 +1,14 @@
 #!/bin/bash
 
+# see https://docs.docker.com/engine/install/centos/#install-using-the-convenience-script
 # curl -fsSL https://get.docker.com -o get-docker.sh
+
+# see https://www.hanselman.com/blog/HowToInstallVisualStudioCodeOnARaspberryPi4InMinutes.aspx
 curl -fsSL https://code.headmelted.com/installers/apt.sh -o get-vscode.sh
 chmod +x get-vscode.sh
 echo you could: sudo ./get-vscode.sh
 
+# see https://retropie.org.uk/docs/Manual-Installation/
 git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd RetroPie-Setup
 chmod +x retropie_setup.sh
