@@ -2,6 +2,7 @@
 
 startDir=$HOME/work/devops
 cd $startDir || exit 1
+myhost=`shost`
 
 tmpf=/tmp/checkfiles.$$
 
@@ -31,13 +32,14 @@ printdir
 checkfile .bashrc			$HOME
 checkfile .bash_aliases			$HOME
 checkfile .cshrc			$HOME
-checkfile authorized_keys		$HOME/.ssh
 checkfile ../bin/hwinfo			$HOME/bin
 
-if test `hostname` = ads.fywss.com; then
-	difffile ../si/hosts.acuity		/etc/hosts
+if test $myhost = clash; then
+	difffile ../si/authorized_keys	$HOME/.ssh/authorized_keys
+	difffile ../si/hosts		/etc/hosts
 else
-	checkfile hosts				/etc
+	checkfile authorized_keys	$HOME/.ssh
+	checkfile hosts			/etc
 fi
 
 if test `uname` = Darwin; then
@@ -54,7 +56,7 @@ if test `uname` = Darwin; then
 	checkfile homebrew.mxcl.consul.plist	/usr/local/Cellar/consul/*
 	checkfile homebrew.mxcl.vault.plist	/usr/local/Cellar/vault/*
 	difffile files/sudoers		/etc/sudoers
-	cd ../hostconfigs/`shost` || exit 0
+	cd ../hostconfigs/$myhost || exit 0
 	printdir
 	difffile nomad.hcl	/etc/nomad
 	difffile consul.hcl	/etc/consul
@@ -79,11 +81,11 @@ else
 	checkfile nginx/sites-enabled/default	/etc
 fi
 
-if ! test -d hostconfigs/`shost`; then
+if ! test -d hostconfigs/$myhost; then
 	checkfile telegraf.conf	/etc/telegraf
 fi
 
-cd hostconfigs/`shost` || exit 0
+cd hostconfigs/$myhost || exit 0
 printdir
 if test `uname -m` = armv7l; then
 	difffile dhcpcd.conf	/etc
