@@ -62,6 +62,7 @@ else
 	else
 		adduser --gecos $user $user
 	fi
+	usermod -aG video $user
 fi
 
 dotfileSetup
