@@ -2,7 +2,10 @@
 
 # curl -fsSL https://get.docker.com -o get-docker.sh
 curl -fsSL https://code.headmelted.com/installers/apt.sh -o get-vscode.sh
+chmod +x get-vscode.sh
+echo you could: sudo ./get-vscode.sh
+
 git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd RetroPie-Setup
 chmod +x retropie_setup.sh
-sudo ./retropie_setup.sh
+echo you could: sudo ./retropie_setup.sh
