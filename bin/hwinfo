@@ -48,12 +48,19 @@ if test `uname` = Darwin; then
 	exit 0
 fi
 
-DISTRO=`head -n 1 /etc/issue.net`
+DISTRO=unknown
+if test -e /etc/redhat-release; then
+	DISTRO=`head -n 1 /etc/redhat-release`
+elif test -e /etc/issue.net; then
+	DISTRO=`head -n 1 /etc/issue.net`
+elif test -e /bin/rpm; then
+	DISTRO=`rpm --query centos-release`
+fi
 free_args=-mt
 verbose=yes
 
 case $DISTRO in
-*Core*) free_args=-mt ; verbose=no ;;
+centos*|*Core*) free_args=-mt ; verbose=no ;;
 Ubuntu*|Raspbian*|*Mint*) free_args=-mt ;;
 *) verbose=yes ;;
 esac
