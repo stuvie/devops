@@ -1,5 +1,5 @@
 node_name = "pie.fywss.com"
-advertise_addr = "10.20.1.8"
+advertise_addr = "10.20.20.2"
 
 client_addr="0.0.0.0"
 
@@ -9,7 +9,7 @@ retry_join = ["mini.fywss.com", "ops.fywss.com", "pie.fywss.com"]
 
 server = true
 bootstrap_expect = 3
-ui = false
+ui = true
 
 telemetry {
   disable_hostname = true
