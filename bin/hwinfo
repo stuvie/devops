@@ -48,7 +48,7 @@ if test `uname` = Darwin; then
 	exit 0
 fi
 
-DISTRO=`head -n 1 /etc/issue`
+DISTRO=`head -n 1 /etc/issue.net`
 free_args=-mt
 verbose=yes
 
