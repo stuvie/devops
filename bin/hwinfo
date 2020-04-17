@@ -1,5 +1,5 @@
 #!/bin/bash
-PATH=$PATH:./bin
+export PATH=$PATH:./bin:/usr/sbin
 
 IFS=$'\n'
 UPTIME=`uptime`

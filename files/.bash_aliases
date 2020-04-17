@@ -16,7 +16,7 @@ Linux)
 		alias ltcp='sudo lsof \!* | grep -i tcp | grep "           "'
 		alias ctl='sudo systemctl'
 		alias update='sudo apt-get update'
-		alias upgrade='sudo apt-get upgrade'
+		alias upgrade='sudo apt-get upgrade -y'
 		alias install='sudo apt-get install -y'
 		alias list='dpkg-query -l | grep'
 		alias search='apt-cache search'
