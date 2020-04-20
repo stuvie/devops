@@ -1,5 +1,5 @@
 node_name = "ops.fywss.com"
-advertise_addr = "10.20.1.6"
+advertise_addr = "10.20.20.3"
 
 client_addr="0.0.0.0"
 

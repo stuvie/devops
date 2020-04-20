@@ -1,5 +1,5 @@
 node_name = "mini.fywss.com"
-advertise_addr = "10.20.1.2"
+advertise_addr = "10.20.20.1"
 #bind_addr = "10.20.1.2"
 
 client_addr="0.0.0.0"
