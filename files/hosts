@@ -4,6 +4,7 @@ ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
 10.20.255.255	broadcast bcast
 
+# external network
 192.168.0.1	modem.fywss.com cable-modem modem
 192.168.0.12	fw-ext.fywss.com fw-ext firewall-ext
 
@@ -11,7 +12,7 @@ ff02::2		ip6-allrouters
 10.20.0.1	fw.fywss.com fw firewall
 10.20.0.2	airport.fywss.com airport
 
-# on switch
+# on Netgear GS308 8-port gigabit switch
 10.20.20.1	mini.fywss.com mini
 10.20.20.2	pie.fywss.com pie
 10.20.20.3	ops.fywss.com ops
