@@ -5,6 +5,7 @@
 #PS1="vagrant@dev.tmacc.com$ "
 
 umask 022
+alias ctl='sudo systemctl'
 
 case `uname` in
 Linux)
@@ -34,6 +35,9 @@ Linux)
 		alias update='sudo yum check-update'
 		alias upgrade='sudo yum update'
 		;;
+	*)
+		alias ctl='sudo systemctl'
+		;;
 	esac
 	;;
 Darwin)
@@ -55,7 +59,6 @@ alias d='dirs'
 alias pd='pushd'
 alias po='popd'
 alias h='history'
-alias ctl='systemctl'
 alias ktl='kubectl'
 
  alias check='/home/skotsopoulos/sk/check.sh'

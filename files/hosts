@@ -16,6 +16,7 @@ ff02::2		ip6-allrouters
 10.20.20.1	mini.fywss.com mini
 10.20.20.2	pie.fywss.com pie
 10.20.20.3	ops.fywss.com ops
+10.20.20.4	ops2.fywss.com ops2
 
 # wifi
 10.20.1.1	mini2.fywss.com mini2 mini-wifi

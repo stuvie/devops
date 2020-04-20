@@ -209,6 +209,7 @@ alias un gunzip -vN
 alias zipls gzip -vl
 alias shell echo /bin/csh is not very C-like
 alias ktl kubectl
+alias al egrep "^alias" ~/.bash_aliases
 
 # tcpdump aliases for network testing
 alias tcpd    tcpdump -N		# show short-form hostnames
