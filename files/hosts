@@ -37,8 +37,9 @@ ff02::2		ip6-allrouters
 10.20.1.33	white.fywss.com white kitchen-cam
 10.20.1.34	nvr.fywss.com nvr
 10.20.1.35	steve-ipad.fywss.com steve-ipad
-10.20.1.36	airport-express.fywss.com airport-express
-10.20.1.37	kaitlin-ipad.fywss.com kaitlin-ipad
+10.20.1.36	airport-express.fywss.com airport-express express
+10.20.1.37	airport-express2.fywss.com airport-express2 express2
+10.20.1.38	kaitlin-ipad.fywss.com kaitlin-ipad
 10.20.1.40	pi0.fywss.com pi0
 10.20.1.41	pete.fywss.com pete
 10.20.1.42	pi2.fywss.com pi2
@@ -51,14 +52,22 @@ ff02::2		ip6-allrouters
 13.71.187.164	staging
 
 # work systems
-# 10.244.149.190	vm
-240.0.0.2	cli-mgmt
-240.0.0.3	cli-node
-240.0.0.9	sdp-steve sdp-vagrant sdp
+240.0.0.2	cli-mgmt management-upstream
+240.0.0.3	cli-node bsl-node-0 node-0
+127.0.1.1	bsl-node-0 node-0
+240.0.0.4	cli-node2
+240.0.0.5	cli-node3
+10.0.2.15	cli-node-eth0
+169.254.1.1	sdp linklocal
+172.26.64.1	nomad sdp-nomad
+172.17.0.1	docker0 sdp-docker0
+240.0.0.9	sdp-steve sdp-vagrant
 
 # aws systems
-54.191.203.87	acme aws-test   awstest test
-34.223.7.124	steve
+34.220.109.28	poc1
+34.212.211.14	poc2
+35.161.196.162	poc3
+54.184.21.127	aaa tacos
 
 #
 # Added by Docker Desktop

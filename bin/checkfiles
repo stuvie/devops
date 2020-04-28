@@ -37,6 +37,12 @@ checkfile ../bin/hwinfo			$HOME/bin
 if test $myhost = clash; then
 	difffile ../si/authorized_keys	$HOME/.ssh/authorized_keys
 	difffile ../si/hosts		/etc/hosts
+elif test $myhost = mini; then
+	checkfile authorized_keys	$HOME/.ssh
+	difffile ../si/hosts		/etc/hosts
+elif test $myhost = mp15skotsopoul1; then
+	checkfile authorized_keys	$HOME/.ssh
+	difffile ../si/hosts		/etc/hosts
 else
 	checkfile authorized_keys	$HOME/.ssh
 	checkfile hosts			/etc
