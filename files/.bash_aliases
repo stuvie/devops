@@ -101,6 +101,11 @@ case `hostname` in
 	alias influx='ssh nj-mon2'
 	alias al='egrep "^alias" ~/.bash_aliases'
 	;;
+MP15SKOTSOPOUL1)
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home
+	PATH=$JAVA_HOME/bin:$PATH
+	;;
 *)
 	alias al='egrep "^alias" ~/.bash_aliases'
 	;;
