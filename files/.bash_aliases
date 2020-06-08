@@ -11,11 +11,15 @@ case `uname` in
 Linux)
 	alias df='/bin/df -h -x tmpfs -x devtmpfs'
 	export JAVA_HOME=/usr/lib/jvm/default-java
+	export LD_LIBRARY_PATH="/usr/lib:/usr/local/lib"
 
-	case `grep '^ID=' /etc/os-release` in
+	OSID=centosHostGator
+	if test -f /etc/os-release; then
+		OSID=`grep '^ID=' /etc/os-release`
+	fi
+	case $OSID in
 	*ubuntu*|*debian*|*raspbian*|*linuxmint*)
 		alias ltcp='sudo lsof \!* | grep -i tcp | grep "           "'
-		alias ctl='sudo systemctl'
 		alias update='sudo apt-get update'
 		alias upgrade='sudo apt-get upgrade -y'
 		alias install='sudo apt-get install -y'
@@ -30,13 +34,16 @@ Linux)
 	*centos*)
 		export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64
 		alias ltcp='sudo lsof \!* | grep -i tcp | grep "           "'
-		alias ctl='sudo systemctl'
 		alias ram='ps aux --sort -rss | head -20'
 		alias update='sudo yum check-update'
 		alias upgrade='sudo yum update'
 		;;
+	*fedora)
+		alias install='sudo rpm-ostree install'
+		alias uninstall='sudo rpm-ostree uninstall'
+		alias list='rpm-ostree status'
+		;;
 	*)
-		alias ctl='sudo systemctl'
 		;;
 	esac
 	;;
