@@ -183,7 +183,7 @@ test -d /tmp/ssh-$user && \
 # An interactive shell -- set some stuff up
 set filec
 set notify=
-set cdpath=( . ~ ~/work/cats ~/work ~/Documents ~/Documents/projects /usr/local ~/Dropbox/projects ~/Dropbox ~/links ~/work/links ~/lib )
+set cdpath=( . ~ ~/work/cats ~/work ~/Documents ~/Documents/projects /usr/local ~/Dropbox/projects ~/Dropbox ~/links ~/work/links ~/lib ~/work/go/src/gitlab.bluecatlabs.net/dns-platform/BSL )
 set history=1000; unset savehist; unset autologout
 
 setenv TZ EST5EDT
