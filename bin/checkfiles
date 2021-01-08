@@ -76,7 +76,7 @@ fi
 
 checkfile services			/etc
 if test $myhost = berry; then
-	difffile hostconfigs/berry/rc.local	/etc/rc.local
+	difffile hostconfigs/rc.berry	/etc/rc.local
 else
 	checkfile rc.local			/etc
 fi
