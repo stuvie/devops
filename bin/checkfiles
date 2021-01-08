@@ -75,7 +75,11 @@ if test `uname` = Darwin; then
 fi
 
 checkfile services			/etc
-checkfile rc.local			/etc
+if test $myhost = berry; then
+	difffile hostconfigs/berry/rc.local	/etc/rc.local
+else
+	checkfile rc.local			/etc
+fi
 
 if test `uname -m` = armv7l || test `uname -m` = armv6l ; then
 	checkfile sshd_config			/etc/ssh
