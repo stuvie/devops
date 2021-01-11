@@ -40,6 +40,7 @@ ff02::2		ip6-allrouters
 10.20.1.36	airport-express.fywss.com airport-express express
 10.20.1.37	airport-express2.fywss.com airport-express2 express2
 10.20.1.38	kp-ipad.fywss.com kp-ipad
+10.20.1.39	sk-garmin.fywss.com sk-garmin
 10.20.1.40	pi0.fywss.com pi0
 10.20.1.41	pete.fywss.com pete
 10.20.1.42	pi2.fywss.com pi2
@@ -77,7 +78,7 @@ ff02::2		ip6-allrouters
 34.220.51.5	centos
 
 # vSphere systems
-10.244.149.71	demo1
+10.244.149.71	demo1 demo
 10.244.149.72	demo2
 10.244.149.73	demo3
 10.244.149.74	demo4
