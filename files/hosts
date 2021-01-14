@@ -53,6 +53,7 @@ ff02::2		ip6-allrouters
 10.20.1.64	ring.fywss.com ring door doorbell
 10.20.1.65	echo-dot.fywss.com echo dot alexa
 10.20.1.66	water-sensor.fywss.com water sensor roost
+10.20.1.67	belkin-ether.fywss.com belkin-ether
 
 # remote
 192.185.5.200	gator.fywss.com gator
@@ -76,6 +77,12 @@ ff02::2		ip6-allrouters
 54.244.74.20	debian
 34.209.182.147	ubuntu
 34.220.51.5	centos
+
+34.220.108.242	node1 n1
+34.220.198.5	node2 n2
+34.220.19.190	node3 n3
+54.244.103.253	steve-aws steve
+34.213.68.53	aaa tacos
 
 # vSphere systems
 10.244.149.71	demo1 demo
