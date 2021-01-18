@@ -54,6 +54,8 @@ ff02::2		ip6-allrouters
 10.20.1.65	echo-dot.fywss.com echo dot alexa
 10.20.1.66	water-sensor.fywss.com water sensor roost
 10.20.1.67	belkin-ether.fywss.com belkin-ether
+10.20.1.68	echo-show.fywss.com show
+10.20.1.69	blink-cam.fywss.com blink-cam blink-mini
 
 # remote
 192.185.5.200	gator.fywss.com gator
@@ -89,6 +91,7 @@ ff02::2		ip6-allrouters
 10.244.149.72	demo2
 10.244.149.73	demo3
 10.244.149.74	demo4
+10.244.149.87	vin node-vin-3
 
 #
 # Added by Docker Desktop
