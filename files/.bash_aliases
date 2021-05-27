@@ -23,10 +23,11 @@ Linux)
 		alias update='sudo apt-get update'
 		alias upgrade='sudo apt-get upgrade -y'
 		alias install='sudo apt-get install -y'
-		alias list='dpkg-query -l | grep'
-		alias search='apt-cache search'
-		alias show='apt-cache show'
+		alias outdated='apt list ---upgradable'
+		alias psearch='apt-cache search'
+		alias pshow='apt-cache show'
 		alias pfiles='dpkg -L'
+		alias plist='dpkg-query -l | grep'
 		export LANGUAGE=en_US.UTF-8
 		export LANG=en_US.UTF-8
 		export LC_ALL=en_US.UTF-8

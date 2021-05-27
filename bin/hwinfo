@@ -1,5 +1,11 @@
-#!/bin/bash
-export PATH=$PATH:./bin:/usr/sbin
+#!/bin/bash -eu
+# bash options:
+# -e  Exit immediately if a command exits with a non-zero status
+# -u  Treat unset variables as an error when substituting
+#
+# hwinfo - print out a variety of information about the current system hardware
+
+export PATH=$PATH:./bin:/usr/sbin:/opt/bluecat/bin
 
 IFS=$'\n'
 UPTIME=`uptime`
@@ -14,7 +20,7 @@ CPU=`arch`
 runcmd()
 {
 	echo running: $*
-	$* 2>&1
+	"$@" 2>&1
 }
 
 hw
@@ -98,6 +104,10 @@ ip -o addr | awk '/inet /{print "  IP (" $2 "):\t" $4}'
 /sbin/route -n | awk '/^0.0.0.0/{ printf "  Gateway:\t"$2"\n" }'
 cat /etc/resolv.conf | awk '/^nameserver/{ printf "  Name Server:\t" $2 "\n"}'
 
+if test -x /usr/bin/lshw; then
+	runcmd sudo lshw -short
+fi
+
 printf "\n<=== DISK space ===>\n"
 df -BM
 printf "\n<=== /proc/meminfo ===>\n"
@@ -111,8 +121,10 @@ printf "\n<=== TCP Network services via netstat ===>\n"
 netstat -lt
 
 if test $verbose = yes; then
-	printf "<=== hardware info ===>\n"
-	lshw -short 2>/dev/null
+	if test -x /usr/bin/lshw; then
+		printf "<=== hardware info ===>\n"
+		lshw -short 2>/dev/null
+	fi
 	printf "<=== cpu info ===>\n"
 	lscpu
 fi
