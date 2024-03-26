@@ -13,16 +13,15 @@ ff02::2		ip6-allrouters
 10.20.0.2	airport.fywss.com airport
 
 # on Netgear GS308 8-port gigabit switch
-10.20.20.1	mini.fywss.com mini
-10.20.20.2	pie.fywss.com pie
-10.20.20.3	ops.fywss.com ops
+10.20.20.1	mini2.fywss.com mini2 mini-switch
+192.168.5.2	ops.fywss.com ops
+192.168.5.3	pie.fywss.com pie
 10.20.20.4	ops2.fywss.com ops2
 
 # wifi
-10.20.1.1	mini2.fywss.com mini2 mini-wifi
-10.20.1.3	clash.fywss.com clash clash2
-10.20.1.4	taco.fywss.com taco
-10.20.1.9	pi4.fywss.com pi4
+192.168.5.1	mini.fywss.com mini mini-wifi
+192.168.5.4	clash.fywss.com clash clash2
+192.168.5.5	taco.fywss.com taco
 10.20.1.19	livingroom-chromecast.fywss.com livingroom-chromecast
 10.20.1.20	apple-tv.fywss.com apple-tv
 10.20.1.21	bedroom-chromecast.fywss.com bedroom-chromecast
@@ -30,22 +29,24 @@ ff02::2		ip6-allrouters
 10.20.1.23	kp-laptop.fywss.com kp-laptop
 10.20.1.24	cassie-laptop.fywss.com cassie-laptop
 10.20.1.25	kitchen-robot.fywss.com kitchen-robot
-10.20.1.26	cat.fywss.com cat
+192.168.5.21	cat.fywss.com cat
+192.168.4.97	kitten.fywss.com kitten
 10.20.1.30	sk-phone.fywss.com sk
 10.20.1.31	kp-phone.fywss.com kp
-10.20.1.32	black.fywss.com black living-room-cam
-10.20.1.33	white.fywss.com white kitchen-cam
-10.20.1.34	nvr.fywss.com nvr
+192.168.4.23	white.fywss.com white kitchen-cam
+192.168.4.43	black.fywss.com black garage-cam
+192.168.4.47	nvr.fywss.com nvr
 10.20.1.35	sk-ipad.fywss.com sk-ipad
 10.20.1.36	airport-express.fywss.com airport-express express
 10.20.1.37	airport-express2.fywss.com airport-express2 express2
 10.20.1.38	kp-ipad.fywss.com kp-ipad
-10.20.1.39	sk-garmin.fywss.com sk-garmin
-10.20.1.40	pi0.fywss.com pi0
-10.20.1.41	pete.fywss.com pete
-10.20.1.42	pi2.fywss.com pi2
-10.20.1.43	pi3.fywss.com pi3
-10.20.1.50	berry.fywss.com berry
+192.168.5.39	sk-garmin.fywss.com sk-garmin
+192.168.5.40	pi0.fywss.com pi0
+192.168.5.41	pete.fywss.com pete
+192.168.5.42	pi2.fywss.com pi2
+192.168.5.43	pi3.fywss.com pi3
+192.168.5.44	pi4.fywss.com pi4
+192.168.5.50	berry.fywss.com berry
 10.20.1.60	sk-watch.fywss.com skw
 10.20.1.61	kp-watch.fywss.com kpw
 10.20.1.62	boiler.fywss.com boiler
@@ -63,6 +64,9 @@ ff02::2		ip6-allrouters
 13.71.187.164	staging
 
 # work systems
+192.168.33.10	sdp-debian-box
+192.168.33.11	manual-debian-box
+192.168.33.12	iso-debian-box
 240.0.0.2	cli-mgmt management-upstream
 240.0.0.3	cli-node bsl-node-0 node-0
 127.0.1.1	bsl-node-0 node-0
@@ -80,18 +84,62 @@ ff02::2		ip6-allrouters
 34.209.182.147	ubuntu
 34.220.51.5	centos
 
-34.220.108.242	node1 n1
-34.220.198.5	node2 n2
-34.220.19.190	node3 n3
-54.244.103.253	steve-aws steve
-34.213.68.53	aaa tacos
+54.184.221.110	node1 n1
+34.219.231.216	node2 n2
+54.185.145.63	node3 n3
+54.244.134.255	steve-aws steve
+34.214.184.91	acme tacos
 
 # vSphere systems
+10.244.149.41	sscarfone-sdp-1 scarfone
 10.244.149.71	demo1 demo
 10.244.149.72	demo2
-10.244.149.73	demo3
-10.244.149.74	demo4
-10.244.149.87	vin node-vin-3
+10.244.149.74	demo3 debian10 integrity
+10.244.149.91	steve1 steve1proxy egw-steve1
+10.244.149.92	steve2 int2 egw-steve2
+10.244.149.93	steve3 alpha3 sp3vmware
+10.244.149.94	steve4 pilot4
+10.244.149.95	steve5 prod5 egw-steve5
+10.244.149.96	steve6 vip6 alias6 egw-steve6
+10.244.149.97	steve7 vip7 alias7
+10.244.149.98	steve8 vip8 alias8
+10.244.149.99	steve9 vip9 alias9
+192.168.0.77	anycast77
+192.168.0.88	anycast88
+192.168.0.99	anycast99
+192.168.1.55	dsr55
+192.168.1.66	dsr66
+192.168.1.77	dsr77
+10.244.149.102	sp1vmware
+fda5:574d:2:1::91 steve1v6 steve1proxyv6 egw-steve1v6
+fda5:574d:2:1::92 steve2v6 steve2proxyv6
+fda5:574d:2:1::93 steve3v6
+fda5:574d:2:1::94 steve4v6
+fda5:574d:2:1::95 steve5v6
+fda5:574d:2:1::96 steve6v6 vip6v6 alias6v6
+fda5:574d:2:1::97 steve7v6 vip7v6 alias7v6
+fda5:574d:2:1::98 steve8v6 vip8v6 alias8v6
+fda5:574d:2:1::99 steve9v6 vip9v6 alias9v6
+10.238.16.251	e1 encs-alpha encs-drs
+10.238.16.252	e4 encs-dev encs-sdp-demo
+10.238.16.10	endencs end-encs
+20.245.205.210	quick
+
+10.244.149.104	end-to-end-vsphere-alpha
+10.244.149.110	end-to-end-vsphere-dev-2
+10.244.149.151	ateam1
+10.244.149.152	ateam2
+10.244.149.153	ateam3
+10.244.149.154	proxy1 http-proxy-1
+10.244.149.155	proxy2 http-proxy-2
+fda5:574d:2:1::151 ateam1v6
+fda5:574d:2:1::152 ateam2v6
+fda5:574d:2:1::153 ateam3v6
+fda5:574d:2:1::154 proxy1v6
+fda5:574d:2:1::155 proxy2v6
+10.0.0.4 SteveAZ-node
+10.244.160.39 amigo
+172.18.130.80	bdds
 
 #
 # Added by Docker Desktop

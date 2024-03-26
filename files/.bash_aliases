@@ -51,11 +51,14 @@ Linux)
 Darwin)
 	alias df='/bin/df -Ph -T nodevfs,autofs,nullfs'
 	#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home
-	export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home
+	#export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.0.2.jdk/Contents/Home
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 	export GOROOT=/usr/local/opt/go/libexec
+	export GOROOT=""
 	export GOPATH=~/work/go
 	export GO111MODULE=on
 	export GOPRIVATE=gitlab.bluecatlabs.net/dns-platform/BSL/*
+	export GOPROXY=https://goproxy.io,direct
 	;;
 esac
 
@@ -93,7 +96,7 @@ fi
 
 # PS1="\u@\h \W\\$ "
 # unset HISTFILE
-PATH=/usr/local/gradle-4.10.2/bin:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:$HOME/work/cli:$PATH:.
+PATH=/usr/local/gradle-4.10.2/bin:/opt/homebrew/bin:$HOME/bin/bluecat:$HOME/work/go/bin:$HOME/bin:/usr/local/bin:/home/steve/bin:$HOME/work/cli:$PATH:.
 if test -f $HOME/.ssh/env.sh; then
 	. $HOME/.ssh/env.sh
 fi
@@ -118,6 +121,7 @@ MP15SKOTSOPOUL1)
 	alias al='egrep "^alias" ~/.bash_aliases'
 	;;
 esac
+alias pass='echo $GOVC_PASSWORD'
 CDPATH=".:~:~/work/cats:~/work:~/work/go/src/gitlab.bluecatlabs.net/dns-platform/BSL:~/work/go/src/github.com/stuvie:~/projects:~/lib:/etc"
 
 # don't put duplicate lines or lines starting with space in the history.
